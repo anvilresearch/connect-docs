@@ -2,6 +2,8 @@
 title: Configure
 ---
 
+# Configure
+
 ## JSON files {#json-files}
 
 Anvil Connect loads it's configuration from a JSON file in the `config` directory of the current working directory for the process. File names must match the `NODE_ENV` value. If `NODE_ENV` is not set, `config/development.json` will be loaded.
