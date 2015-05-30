@@ -1,6 +1,6 @@
 # Anvil Connect Documentation
 
-This is the official documentation for Anvil Connect and related projects.
+This is the official documentation for [Anvil Connect](https://github.com/anvilresearch/connect) and related projects.
 
 ## Support
 
