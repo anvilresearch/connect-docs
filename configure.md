@@ -24,21 +24,29 @@ $ openssl rsa -pubout -in config/keys/private.pem -out config/keys/public.pem
 
 ### Server
 
-
 #### issuer
 
 Fully qualified base uri of the authorization server; e.g., <code>https://accounts.anvil.io</code>
 
 #### port
-An integer value representing the port the server will be bound to, unless a <code>PORT</code> environment variable is provided. Defaults to <code>3000</code>.
 
+An integer value representing the port the server will be bound to, unless a <code>PORT</code> environment variable is provided. Defaults to <code>3000</code>.
 
 #### cookie_secret
 
+A string used for signing cookies. When you initialize a project, this value is generated for each of your environments. Treat it as confidential and always use separate values for each project and environment.
 
 #### session_secret
 
+A string used for signing session ID cookies. When you initialize a project, this value is generated for each of your environments. Treat it as confidential and always use separate values for each project and environment.
 
+#### client_registration
+
+Anvil Connect can be configured for three types of client registration: `dynamic`, `token`, or `scoped`, each being more restrictive than the previous option. The default `client_registration` type is `scoped`. For more details, see the section titled [Client Registration](#client-registration-1).
+
+#### trusted_registration_scope
+
+Trusted clients require additional scope to register. This can be configured with the `trusted_registration_scope` setting, which defaults to `realm`.
 
 
 ### Providers
@@ -175,23 +183,19 @@ Anvil Connect uses [bucker](https://github.com/nlf/bucker) for logging. Any vali
 ### Client Registration
 
 
-Anvil Connect can be configured for three types of client registration: `dynamic`, `token`, or `scoped`, each being more restrictive than the previous option. The default `client_registration` type is `scoped`.
+Anvil Connect can be configured for three types of client registration: `dynamic`, `token`, or `scoped`, each being more restrictive than the previous option. The default `client_registration` type is `scoped`. Trusted clients require additional scope to register. This can be configured with the `trusted_registration_scope` setting, which defaults to `realm`.
 
 #### Dynamic Client Registration
 
-With `client_registration` set to `dynamic`, any party can register a client with the authorization server.
+With `client_registration` set to `dynamic`, any party can register a client with the authorization server. Optionally, a bearer token may be provided in the authorization header per RFC6750. If a valid access token is presented with a registration request, the client will be associated with the user represented by that token.
 
-Optionally, a bearer token may be provided in the authorization header per RFC6750. If a valid access token is presented with a registration request, the client will be associated with the user represented by that token.
-
-A trusted client may be registered, however, an access token must be presented and the token must have sufficient scope to register trusted clients. The scope required to register a trusted client defaults to `realm`. This value can be configured with the `trusted_registration_scope` setting.
-
-    // config/NODE_ENV.json
-    {
-      // ...
-      "client_registration": "dynamic",
-      "trusted_registration_scope": "register"
-      // ...
-    }
+```json
+{
+  // ...
+  "client_registration": "dynamic",
+  // ...
+}
+```
 
 The following table indicates expected responses to *Dynamic Client Registration* requests.
 
@@ -209,13 +213,13 @@ The following table indicates expected responses to *Dynamic Client Registration
 
 Client registration can be restricted so that a valid user access token is required by setting `client_registration` to `token`. In this case, any request without a token will fail. As with *Dynamic Client Registration*, in order to register a trusted client, the access token must have sufficient scope.
 
-    // config/NODE_ENV.json
-    {
-      // ...
-      "client_registration": "token",
-      "trusted_registration_scope": "realm"
-      // ...
-    }
+```json
+{
+  // ...
+  "client_registration": "token",
+  // ...
+}
+```
 
 | trusted | w/token | w/scope | response  |
 |:-------:|:-------:|:-------:|----------:|
@@ -230,13 +234,13 @@ Client registration can be restricted so that a valid user access token is requi
 
 Third party registration can be restricted altogether with the `scoped` `client_registration` setting. In this case, all registration requires a prescribed `registration_scope`.
 
-    // config/NODE_ENV.json
-    {
-      // ...
-      "client_registration": "scoped",
-      "registration_scope": "realm"
-      // ...
-    }
+```json
+{
+  // ...
+  "client_registration": "scoped",
+  // ...
+}
+```
 
 | trusted | w/token | w/scope | response  |
 |:-------:|:-------:|:-------:|----------:|
@@ -251,4 +255,4 @@ Third party registration can be restricted altogether with the `scoped` `client_
 
 ### OpenID Metadata
 
-OpenID Metadata Default Values can be overridden by defining them in the configuration file. Don't change these unless you know what you're doing.
+[OpenID Provider Metadata](http://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata) default values can be overridden by defining them in the configuration file. Don't change these unless you know what you're doing.
