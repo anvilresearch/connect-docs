@@ -316,16 +316,18 @@ Anvil Connect uses [bucker](https://github.com/nlf/bucker) for logging. Any vali
 
 
 
-
 ## Customize
 
+<!--
 ### Views
 ### Hooks
 ### Providers
 ### Protocols
+-->
 
 ## Deploy
 
+<!--
 ### SSL
 ### Nginx
 ### Docker
@@ -334,3 +336,4 @@ Anvil Connect uses [bucker](https://github.com/nlf/bucker) for logging. Any vali
 ### AWS
 ### Heroku
 ### Modulus
+-->
