@@ -4,18 +4,22 @@
 
 ### Requirements
 
-Anvil Connect is built with the latest versions of [Node.js](https://nodejs.org/) (0.12.x) and [Redis](http://redis.io/) (3.0.x). You'll need these installed on your system before you can run the server.
+Anvil Connect is built with the latest versions of [Node.js](https://nodejs.org/) (0.12.x) and [Redis](http://redis.io/) (3.0.x). You'll need these installed on your system before you can run the server. In light of the Node shakeup that resulted in the Node Foundation's creation, we will be updating Connect as Node continues to evolve.
 
 
 
 
 ### Install
-
-Install Anvil Connect globally with npm to install the CLI.
+To install Connect, run the npm install command: 
 
 ```bash
 $ npm install -g anvil-connect
 ```
+
+> **Note:** Windows support hasn't been tested, but you must have Python 2.7 and Visual Studio are required for compiling parts of Connect. If you would like to help contribute to Windows support, let us know, and we'll work to find the specific issues.
+
+After npm is finished installing Connect, you will have access to the Connect command line tool to start working on integrating Connect into your project.
+
 
 ### Initialize
 
