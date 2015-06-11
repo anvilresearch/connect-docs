@@ -6,7 +6,9 @@ This is the official documentation for [Anvil Connect](https://github.com/anvilr
 
 ### Chat on Gitter
 
-Come say hello on [Gitter](https://gitter.im/anvilresearch/connect)! We love talking shop with Anvil Connect users :)
+Come say hello on Gitter! We love talking shop with Anvil Connect users :)
+
+[![Gitter](https://badges.gitter.im/anvilresearch/gitter.svg)](https://gitter.im/gitterHQ/gitter)
 
 ### Stack Overflow
 
