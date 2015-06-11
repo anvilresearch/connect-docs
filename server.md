@@ -1,12 +1,11 @@
 # Server
 
+
 ## Get Started
 
 ### Requirements
 
-Anvil Connect is built with the latest versions of [Node.js](https://nodejs.org/) (0.12.x) and [Redis](http://redis.io/) (3.0.x). You'll need these installed on your system before you can run the server. In light of the Node shakeup that resulted in the Node Foundation's creation, we will be updating Connect as Node continues to evolve.
-
-
+Anvil Connect is built with the latest versions of [Node.js](https://nodejs.org/) (0.12.x) and [Redis](http://redis.io/) (3.0.x). You'll need these installed on your system before you can run the server. In light of the Node shakeup that resulted in the Node Foundation's creation, it should be noted that Connect will be updating as Node continues to evolve.
 
 
 ### Install
@@ -16,19 +15,12 @@ To install Connect, run the npm install command:
 $ npm install -g anvil-connect
 ```
 
-> **Note:** Windows support hasn't been tested, but you must have Python 2.7 and Visual Studio are required for compiling parts of Connect. If you would like to help contribute to Windows support, let us know, and we'll work to find the specific issues.
+> **Note:** Windows support hasn't been tested, but you must have Python 2.7 and Visual Studio, which are required for compiling parts of Connect. If you would like to help contribute to Windows support, let us [know](https://github.com/anvilresearch/connect/issues), and we'll be able to work together.
 
 After npm is finished installing Connect, you will have access to the Connect command line tool to start working on integrating Connect into your project.
 
 
 ### Initialize
-
-
-
-
-
-
-
 
 #### Generate deployment
 
@@ -39,7 +31,9 @@ $ mkdir path/to/project && cd $_
 $ nv init
 ```
 
-This will generate a file tree that looks something like this:
+<!-- Is $_ a real command? 99.99% sure it won't work on Windows.-->
+
+This will generate a file tree that looks something like this: <!-- What is meant by "something" in this? Elaboration is needed to make this explicit. Describe the exact resuls and/or the reasons they would differ. --> 
 
 ```bash
 ├── .bowerrc
@@ -80,9 +74,10 @@ $ npm install
 $ bower install
 ```
 
+
 #### Initialize the database
 
-If you're using a fresh Redis installation running on `localhost` and you're ok with using the default (preferably empty) database, there's nothing to configure. If you're using a remote Redis instance, your instance requires a password, or you want to use a database other than `0`, [edit the config file](#redis) for the environment you're preparing (development or production).
+If you're using a fresh Redis installation running on `localhost` and you're ok with using the default (preferably empty) database, because there's no need to configure Redis to be used with Connect. If you're using a remote Redis instance, your instance requires a password, or you want to use a database other than `0`, [edit the config file](#redis) for the environment you're preparing (development or production).
 
 Then, to initialize your development database, run:
 
@@ -99,48 +94,41 @@ $ NODE_ENV=production nv migrate
 This will create default clients, roles, scopes and permissions necessary to operate the authorization server.
 
 
-
-
-
-
-
-
-
 ### Run
 
 #### Environments
+<!-- Elaborate? -->
 #### Commands
+There are two environments to run the Connect server in, `development`, and `production`. The development server is for local testing, setup, and development on Connect itself. The production environment should be used when deployed to a live environment. 
 
-Run the authorization server in `development` mode:
+To run the authorization server in `development` mode, you can run the server by simply starting it:
 
 ```bash
-# Any of the following are equivalent
+# The following are equivalent, any of them will start the development server
 $ nv serve
 $ node server.js
 $ npm start
 ```
 
-To run the server in production, set `NODE_ENV`:
+To run the server in production, set `NODE_ENV` to `production`:
 
 ```bash
-# Any of the following are equivalent
+# The following are equivalent, any of them will start the production server
 $ nv serve --production
 $ node server.js -e production
 $ NODE_ENV=production node server.js
 ```
 
 
-
-
 ## Configure
 
 ### JSON files
 
-Anvil Connect loads it's configuration from a JSON file in the `config` directory of the current working directory for the process. File names must match the `NODE_ENV` value. If `NODE_ENV` is not set, `config/development.json` will be loaded.
+Anvil Connect loads its configuration from a JSON file in the `config` directory of the current working directory for the process. File names must match the `NODE_ENV` value. If `NODE_ENV` is not set, `config/development.json` will be loaded.
 
 ### Key pairs
 
-If you generated a deployment repository with `nv init`, a new RSA key pair will be generated for you in `config/keys`. This pair of files is required for signing and verifying tokens. We recommend using the generated files. If you want to provide your own, you can obtain them using OpenSSL.
+If you generated a deployment repository with `nv init`, a new RSA key pair will be generated for you in `config/keys`. This pair of files is required for signing and verifying tokens. We recommend using the generated files. <!-- Why is it beneficial to use Connect-generated keys? --> If you want to provide your own, you can obtain them using OpenSSL.
 
 ```
 $ cd PROJECT_ROOT
@@ -149,15 +137,22 @@ $ openssl genrsa -out config/keys/private.pem 2048
 $ openssl rsa -pubout -in config/keys/private.pem -out config/keys/public.pem
 ```
 
-
-
 ### Server Settings
 
 ##### issuer
 
-Fully qualified base uri of the authorization server; e.g., <code>https://accounts.anvil.io</code>
+**Type:** string
+
+**Use:** URI used to identify issuer of authentication
+
+Fully qualified base URI of the authorization server; e.g., <code>https://accounts.anvil.io</code>
+
 
 ##### port
+
+**Type:** integer
+
+**Use:** port # the Connect server is run under
 
 An integer value representing the port the server will be bound to, unless a <code>PORT</code> environment variable is provided. Defaults to <code>3000</code>.
 
