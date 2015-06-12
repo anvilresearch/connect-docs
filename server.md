@@ -101,7 +101,7 @@ This will create default clients, roles, scopes and permissions necessary to ope
 ### Run
 
 #### Environments
-<!-- Elaborate? -->
+
 #### Commands
 There are two environments to run the Connect server in, `development`, and `production`. The development server is for local testing, setup, and development on Connect itself. The production environment should be used when deployed to a live environment. 
 
@@ -132,7 +132,9 @@ Anvil Connect loads its configuration from a JSON file in the `config` directory
 
 ### Key pairs
 
-If you generated a deployment repository with `nv init`, a new RSA key pair will be generated for you in `config/keys`. This pair of files is required for signing and verifying tokens. We recommend using the generated files. <!-- Why is it beneficial to use Connect-generated keys? --> If you want to provide your own, you can obtain them using OpenSSL.
+If you generated a deployment repository with `nv init`, a new RSA key pair will be generated for you in `config/keys`. This pair of files is required for signing and verifying tokens. We recommend using the generated files. We have set up key generation to lower the barrier to entry, as it is a tedious, precise process to do by hand.
+
+If you want or need to provide your own RSA key bapir, you can obtain it using OpenSSL and import them to the proper location, `config/keys/private.pem` for the private key and `config/keys/public.pem` for the public key.
 
 ```
 $ cd PROJECT_ROOT
@@ -186,7 +188,7 @@ $ openssl rsa -pubout -in config/keys/private.pem -out config/keys/public.pem
 
 ##### trusted_registration_scope
 
-**Type:** string - options: `realm` <!-- and others? --> 
+**Type:** string - options: `realm`, site-defined options
 
 **Use:** signing session cookies
 
