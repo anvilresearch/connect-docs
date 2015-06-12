@@ -134,7 +134,7 @@ Anvil Connect loads its configuration from a JSON file in the `config` directory
 
 If you generated a deployment repository with `nv init`, a new RSA key pair will be generated for you in `config/keys`. This pair of files is required for signing and verifying tokens. We recommend using the generated files. We have set up key generation to lower the barrier to entry, as it is a tedious, precise process to do by hand.
 
-If you want or need to provide your own RSA key bapir, you can obtain it using OpenSSL and import them to the proper location, `config/keys/private.pem` for the private key and `config/keys/public.pem` for the public key.
+If you want or need to provide your own RSA key pair, you can obtain it using OpenSSL and import them to the proper location, `config/keys/private.pem` for the private key and `config/keys/public.pem` for the public key.
 
 ```
 $ cd PROJECT_ROOT
