@@ -33,7 +33,7 @@ $ nv init
 
 <!-- Is $_ a real command? 99.99% sure it won't work on Windows.-->
 
-This will generate a file tree that looks something like this: <!-- What is meant by "something" in this? Elaboration is needed to make this explicit. Describe the exact resuls and/or the reasons they would differ. --> 
+This will generate a file tree in the **current** directory: 
 
 ```bash
 ├── .bowerrc
@@ -63,11 +63,13 @@ This will generate a file tree that looks something like this: <!-- What is mean
     └── signup.jade
 ```
 
+`nv init` will also write to the console the next steps needed to finish Connect setup once the file tree has been created.
+
 Anvil Connect aims to be easily customizable. Using a deployment repository allows you to serve your own static assets, customize views (HTML templates), manage dependencies and keep your configuration under version control. It also makes upgrading Anvil Connect as simple as changing the version number in `package.json`.
 
 #### Install Dependencies
 
-Now you can install npm and bower dependencies.
+Now you can install npm and bower dependencies, if you want to run Connect locally.
 
 ```bash
 $ npm install
@@ -82,12 +84,14 @@ If you're using a fresh Redis installation running on `localhost` and you're ok 
 Then, to initialize your development database, run:
 
 ```bash
+// development
 $ nv migrate
 ```
 
 To initialize a production database, run:
 
 ```bash
+// production
 $ NODE_ENV=production nv migrate
 ```
 
