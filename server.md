@@ -27,7 +27,7 @@ After npm is finished installing Connect, you will have access to the Connect co
 Once you have installed the CLI, make a new directory and initialize your project.
 
 ```bash
-$ mkdir path/to/project && cd $_
+$ mkdir path/to/project && cd path/to/project
 $ nv init
 ```
 
