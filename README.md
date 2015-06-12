@@ -8,7 +8,7 @@ This is the official documentation for [Anvil Connect](https://github.com/anvilr
 
 Come say hello on Gitter! We love talking shop with Anvil Connect users :)
 
-[![Gitter](https://badges.gitter.im/anvilresearch/gitter.svg)](https://gitter.im/gitterHQ/gitter)
+[![Gitter](https://badges.gitter.im/anvilresearch/connect.svg)](https://gitter.im/anvilresearch/connect)
 
 ### Stack Overflow
 
