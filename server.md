@@ -188,7 +188,7 @@ $ openssl rsa -pubout -in config/keys/private.pem -out config/keys/public.pem
 
 ##### trusted_registration_scope
 
-**Type:** string - options: `realm`, site-defined options
+**Type:** string - options: `realm`, Connect operator's own registered scope(s)
 
 **Use:** signing session cookies
 
