@@ -27,13 +27,13 @@ After npm is finished installing Connect, you will have access to the Connect co
 Once you have installed the CLI, make a new directory and initialize your project.
 
 ```bash
-$ mkdir path/to/project && cd $_
+$ mkdir path/to/project && cd path/to/project
 $ nv init
 ```
 
 <!-- Is $_ a real command? 99.99% sure it won't work on Windows.-->
 
-This will generate a file tree that looks something like this: <!-- What is meant by "something" in this? Elaboration is needed to make this explicit. Describe the exact resuls and/or the reasons they would differ. --> 
+This will generate a file tree in the **current** directory: 
 
 ```bash
 ├── .bowerrc
@@ -63,11 +63,13 @@ This will generate a file tree that looks something like this: <!-- What is mean
     └── signup.jade
 ```
 
+`nv init` will also write to the console the next steps needed to finish Connect setup once the file tree has been created.
+
 Anvil Connect aims to be easily customizable. Using a deployment repository allows you to serve your own static assets, customize views (HTML templates), manage dependencies and keep your configuration under version control. It also makes upgrading Anvil Connect as simple as changing the version number in `package.json`.
 
 #### Install Dependencies
 
-Now you can install npm and bower dependencies.
+Now you can install npm and bower dependencies, if you want to run Connect locally.
 
 ```bash
 $ npm install
@@ -82,12 +84,14 @@ If you're using a fresh Redis installation running on `localhost` and you're ok 
 Then, to initialize your development database, run:
 
 ```bash
+// development
 $ nv migrate
 ```
 
 To initialize a production database, run:
 
 ```bash
+// production
 $ NODE_ENV=production nv migrate
 ```
 
@@ -97,7 +101,7 @@ This will create default clients, roles, scopes and permissions necessary to ope
 ### Run
 
 #### Environments
-<!-- Elaborate? -->
+
 #### Commands
 There are two environments to run the Connect server in, `development`, and `production`. The development server is for local testing, setup, and development on Connect itself. The production environment should be used when deployed to a live environment. 
 
@@ -128,7 +132,9 @@ Anvil Connect loads its configuration from a JSON file in the `config` directory
 
 ### Key pairs
 
-If you generated a deployment repository with `nv init`, a new RSA key pair will be generated for you in `config/keys`. This pair of files is required for signing and verifying tokens. We recommend using the generated files. <!-- Why is it beneficial to use Connect-generated keys? --> If you want to provide your own, you can obtain them using OpenSSL.
+If you generated a deployment repository with `nv init`, a new RSA key pair will be generated for you in `config/keys`. This pair of files is required for signing and verifying tokens. We recommend using the generated files. We have set up key generation to lower the barrier to entry, as it is a tedious, precise process to do by hand.
+
+If you want or need to provide your own RSA key pair, you can obtain it using OpenSSL and import them to the proper location, `config/keys/private.pem` for the private key and `config/keys/public.pem` for the public key.
 
 ```
 $ cd PROJECT_ROOT
@@ -182,7 +188,7 @@ $ openssl rsa -pubout -in config/keys/private.pem -out config/keys/public.pem
 
 ##### trusted_registration_scope
 
-**Type:** string - options: `realm` <!-- and others? --> 
+**Type:** string - options: `realm`, Connect operator's own registered scope(s)
 
 **Use:** signing session cookies
 
