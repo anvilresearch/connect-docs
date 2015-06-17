@@ -1,20 +1,26 @@
+<!-- TODO: 
+    [ ] - Rewrite "Learn More" text for links in Getting Started sections
+-->
+
 # Overview
 
 ## Why Anvil Connect?
 
-The problem of auth is like an iceberg. On the surface users only see the button to "sign in with Facebook" or a simple password login form. This makes  it seem like auth should be easy and straightforward. Just use some library and get on with building the app.
+The problem of auth is like an iceberg. On the surface users only see the button to "sign in with Facebook" or a simple password login form. This makes  it seem like auth should be easy and straightforward - just use some library and get on with building the app.
 
-Auth quickly becomes more challenging when you have more than one app and you want to share user accounts and permissions. It gets worse when you want to offer users a choice of several authentication methods. Now you have a many to many problem. These challenges multiply further when you start publishing and consuming API data. Anvil Connect solves these problems by providing a single point of truth for identity and access management.
+Auth quickly becomes more challenging when you have more than one app that you want to share user accounts and permissions across. It gets worse when you want to offer users a choice of several authentication methods. Now you have a many to many problem. These challenges get exponentially worse when you start publishing and consuming API data. Anvil Connect solves these problems by providing a single point of truth for identity and access management.
 
 
 
 ## How it works
+<!-- Is this Connect or Connect's server that acts as a database? -->
+Anvil Connect acts as a database of users, apps, services, permissions and connections to other authentication providers. When running the server, _you_ also become a provider of OAuth 2.0 and OpenID Connect (which is an authentication service that isn't a part of the OpenID service most people know). Connect's implementation of these allow for sharing user accounts between applications, and your APIs are secured with with JSON Web Tokens. As such, third party developers can, if you choose to allow it, build apps that authenticate against your instance of Connect.
 
-Anvil Connect acts as a database of users, apps, services, permissions and connections to other providers. When you run the server, _you_ also become a provider of OAuth 2.0 and OpenID Connect (which is a poorly named authentication service that isn't a part of the failed OpenID most people know). Connect's implementation of these allow you to share user accounts between applications and protect your APIs with JSON Web Tokens. It also means third party developers can, if you choose to allow it, build apps that authenticate against your instance of Connect.
+By default, Anvil Connect has the option to deligate user authentication to other identity providers. Out of the box, you can authenticate users with a growing list of third parties, including AngelList, Dropbox, Facebook, Foursquare, GitHub, Google, LinkedIn, Reddit, SoundCloud, Twitter, and WordPress. In addition, the local Connect server can authenticate users with standard email + password combinations within your instance of Connect. It never stores passwords, only a hash of the password.
 
-Anvil Connect can delegate user authentication to other identity providers. Out of the box, you can authenticate users with a growing list of third parties, including AngelList, Dropbox, Facebook, Foursquare, GitHub, Google, LinkedIn, Reddit, SoundCloud, Twitter, and WordPress. In addition, the local Connect server can authenticate users with standard username + password combinations within your instance of Connect. It never stores passwords, only a hash of the password.
+<!--     Is the hash salted? ^^^^^^^^^^^^^^^^^^^^^^ -->
 
-You can easily extend Anvil Connect to support more providers using OAuth, OAuth 2.0, OpenID 2.0, or OpenID Connect. If that isn't enough, you can integrate virtually any existing Passport strategy or write your own custom auth code. The sky's the limit.
+Even though we have many integrations out of the box, it is likely you'll need one that isn't one of the defaults. Luckily, you can easily extend Anvil Connect to support more providers using OAuth, OAuth 2.0, OpenID 2.0, or OpenID Connect. If that isn't enough, you can integrate virtually any existing Passport strategy or write your own custom auth code. The sky's the limit.
 
 
 
@@ -22,31 +28,41 @@ You can easily extend Anvil Connect to support more providers using OAuth, OAuth
 
 ### Server
 
-Anvil Connect has a server that runs independently of your apps and services. To start using Connect, you'll first need to set up your own instance of the server in a development environment. Then you can configure, customize, and deploy.
+Anvil Connect has a built-in server that runs independently of your apps and services. This allows for Connect to work in your app regardless of what stack it's running on. To start hacking on Connect, you'll first need to set up your own instance of the server in a development environment. Then you can configure, customize, and deploy.
 
 [Learn more](/docs/connect-docs/server/)
 
 ### Clients
 
-After setting up your server, the next step is to register apps and services to allow your users to sign in with. Once you’ve registered your Connect instance with the apps and services you want to give as an option for your users, you can add their respective libraries and configure them to use your new auth server. <!-- review for accuracy - not sure about some terminology at the end there.-->
+After setting up your server, the next step is to register apps and services to allow your users to sign in with. Once you’ve registered your Connect instance with the apps or services you want to give as an option for your users, you can add their respective libraries and configure them to use your new auth server. 
 
 [Learn more](/docs/connect-docs/clients/)
 
 ### Users
 
-Your Anvil Connect server is a database for your users' identity in terms of verifying who they are, both on your site as a unique entity as well as on other connected sites via your server as a proxy.
+The Anvil Connect server is a database for users' identity. This identity can be unique to your app, serving as an authentication point for any other Connect app. Once initially identified by your Connect server, the user can attach other app or service authentication to their account. 
+
+An example of the flow:
+```Markdown
+|
+|--- User registers account, with or without a third-party apps and services authenticating the user.
+|  | --- User now has an account, and can add third-party app and service affiliations whenever they'd like to.
+|  | --- User can sign into any Connect-enabled site with their account from your site.
+```
+
+<!-- Question: How are peope going to log into site 2 with site 1's connect? -->
 
 [Learn more](/docs/connect-docs/users/)
 
 ### Permissions
 
-With OAuth scopes and Role-based Access Control, you can define fine grained permissions for users and clients. 
+With OAuth scopes and Role-based Access Control, you can define fine-grained permissions for users and clients. 
 
 [Learn more](/docs/connect-docs/permissions/)
 
 ### Tokens
 
-Anvil Connect issues signed JSON Web Tokens. Here's what you need to know to implement a client library or just learn how it works under the hood.
+Anvil Connect issues signed JSON Web Tokens. Implementing your own client libraries isn't complex. Understanding JSON Web Tokens exposes the internals of how Connect works. 
 
 [Learn more](/docs/connect-docs/tokens/)
 
