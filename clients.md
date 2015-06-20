@@ -1,7 +1,7 @@
 # Clients
 
 
-After setting up your Anvil Connect server, the next step is to register your apps and services (clients) to obtain credentials and configure relevant [properties](#client-properties), depending on the type of client. Once you've done this, you can add a library dependency to your client code and configure it to use your auth server and credentials.
+After setting up your Anvil Connect server, the next step is to register apps and services, called clients, to obtain credentials and configure relevant [properties](#client-properties), depending on the type of client. Once you've done this, you can add a library dependency to your client code and configure it to use your auth server and credentials.
 
 
 ## Client Types
