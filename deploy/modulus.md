@@ -1,3 +1,5 @@
+<!-- WIP Guide to Installing on Modulus - Broken on Modulus's end right now. -->
+
 1. Go to Modulus
 2. Sign in
 3. New project
