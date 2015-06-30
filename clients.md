@@ -1,7 +1,7 @@
 # Clients
 
 
-After setting up your Anvil Connect server, the next step is to register your apps and services (clients) to obtain credentials and configure relevant [properties](#client-properties), depending on the type of client. Once you've done this, you can add a library dependency to your client code and configure it to use your auth server and credentials.
+After setting up your Anvil Connect [server](/docs/connect-docs/server/), the next step is to register your apps and services, called clients, to obtain credentials and configure relevant [properties](#client-properties), depending on the type of client. Once you've done this, you can add a library dependency to your client code and configure it to use your auth server and credentials.
 
 
 ## Client Types
@@ -11,7 +11,7 @@ After setting up your Anvil Connect server, the next step is to register your ap
 As an identity provider, Anvil Connect can optionally authenticate users of third party apps against your auth server. When users come from another developer's app, the server prompts users to authorize access to their account. This is important when sharing data outside of your own realm, but unnecessary for your own apps. To streamline the user experience, you can register "trusted" apps.
 
 
-### Application Type
+### Application Types
 
 Anvil Connect supports three kinds of clients: `web`, `native`, and `service`. The type of client is determined by the [application_type](#application-type) property, which defaults to `web`. `web` clients can be server side apps like you might build with Rails or HTML5 apps that run entirely in the browser. `native` clients include iOS, Android, desktop, and CLI apps. `service` type clients include RESTful and realtime APIs. Users typically don't interact directly with services. Use this type if your client will acquire client-only credentials without user intervention.
 
