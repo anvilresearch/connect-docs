@@ -9,7 +9,7 @@ Anvil Connect is built with the latest versions of [Node.js](https://nodejs.org/
 
 
 ### Install
-To install Connect, run the npm install command: 
+To install Connect, run the npm install command:
 
 ```bash
 $ npm install -g anvil-connect
@@ -33,7 +33,7 @@ $ nv init
 
 <!-- Is $_ a real command? 99.99% sure it won't work on Windows.-->
 
-This will generate a file tree in the **current** directory: 
+This will generate a file tree in the **current** directory:
 
 ```bash
 ├── .bowerrc
@@ -103,7 +103,7 @@ This will create default clients, roles, scopes and permissions necessary to ope
 #### Environments
 
 #### Commands
-There are two environments to run the Connect server in, `development`, and `production`. The development server is for local testing, setup, and development on Connect itself. The production environment should be used when deployed to a live environment. 
+There are two environments to run the Connect server in, `development`, and `production`. The development server is for local testing, setup, and development on Connect itself. The production environment should be used when deployed to a live environment.
 
 To run the authorization server in `development` mode, you can run the server by simply starting it:
 
@@ -206,7 +206,7 @@ The providers setting is an object containing settings for various authenticatio
 }
 ```
 
-To enable password authentication, add a `password` property to the `providers` object with a value of `true`. When set to true, `password` _requires_ login with username/password combination for the given providers every time they sign in. If set to `false`, the user will be able to sign in without authenticating with via username/password with the provider if as they are externally logged into that provider already. 
+To enable password authentication, add a `password` property to the `providers` object with a value of `true`. When set to true, `password` _requires_ login with username/password combination for the given providers every time they sign in. If set to `false`, the user will be able to sign in without authenticating with via username/password with the provider if as they are externally logged into that provider already.
 
 ```json
 {
@@ -333,8 +333,33 @@ Anvil Connect uses [bucker](https://github.com/nlf/bucker) for logging. Any vali
 
 ## Customize
 
-<!--
 ### Views
+
+You can change the look and feel of Anvil Connect by editing the contents of the `views` directory in your project. There are four templates included in your views directory: `authorize`, `signin`, `signup`, and `session`. Connect uses the `jade` templating language by default. You can configure your server to use a different templating language with the `view_engine` setting in your config files.
+
+#### Authorize
+
+The `authorize` view is the part of an OAuth 2.0 authorization flow that enables users to provide consent to an application to access some of their data. It is rendered when users authorize a third-party app. It is not displayed when authenticating `trusted` clients.
+
+#### Signin
+
+The `signin` view displays all configured user authentication options.
+
+#### Signup
+
+The `signup` view displays a signup form for local password authentication.
+
+#### Session
+
+This view is not intended to be visible to users. It gets loaded into a hidden iframe for clients that implement Single Sign-On using OpenID Connect Sessions. If you change it, be sure to leave the script references intact or this feature will not work correctly.
+
+
+
+#### Static Assets
+
+You can also add your own static assets to be served from the `public` directory at the root of your project.
+
+<!--
 ### Hooks
 ### Providers
 ### Protocols
