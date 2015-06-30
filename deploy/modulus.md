@@ -1,17 +1,42 @@
 <!-- WIP Guide to Installing on Modulus - Broken on Modulus's end right now. -->
 
-1. Go to Modulus
-2. Sign in
-3. New project
-3.1. Input Project Name
-3.2. Node Project
-3.3. 193mb
-3.4. Default server
-4. Create a new Anvil Connect project
-4.1. npm install -g anvil-connect locally
-4.2. nv init
-5. npm install -g modulus
-5.1. modulus login
+# Modulus
+
+## Setup
+
+To start the process of deploying Connect to a Modulus project, go to https://modulus.io.
+
+#### Sign in or Create an account
+
+Sign into your modulus account, or create a new one if you didn't previously have one.
+
+## New project
+Create a new Modulus project, with the following attributes:
+
+* Input Project Name
+* Node Project
+* 193mb
+<!-- ^^ This is the lowest memory available, which we used to test minimum requirements for Connect on Modulus. Update if minimum requirements are higher. -->
+* Default server
+
+## Create a new Anvil Connect project locally
+Run  `sudo npm install -g anvil-connect` to install the Connect CLI. Once you've run this, you will have access to `nv`, Connect's CLI, globally on your computer or VM.
+
+Then, to initialize an instance of Connect locally, run 
+
+```bash
+mkdir anvil-connect
+cd anvil-connect
+nv init
+```
+
+## Setting up Modulus's CLI
+
+Run `sudo npm install -g modulus` to install the Modulus's CLI. Once you've run this, you will have access to `modulus`, Modulus's CLI, globally on your computer or VM.
+
+##### Login to Modulus via CLI
+Run `modulus login`, and login with your Modulus account credentials.
+
 // Other steps that are important
 6. Navigate to Administration tab !important
 6.1. Enable SSL Redirect
