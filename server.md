@@ -335,7 +335,7 @@ Anvil Connect uses [bucker](https://github.com/nlf/bucker) for logging. Any vali
 
 ### Views
 
-You can change the look and feel of Anvil Connect by editing the contents of the `views` directory in your project. There are four templates included in your views directory: `authorize`, `signin`, `signup`, and `session`. Connect uses the `jade` templating language by default. You can configure your server to use a different templating language with the `view_engine` setting in your config files.
+You can change the look and feel of Anvil Connect by editing the contents of the `views` directory in your project. There are four templates included in your views directory: `authorize`, `signin`, `signup`, and `session`. Connect works with any templating language supported by [consolidate.js](https://github.com/tj/consolidate.js). The `jade` templating language is used by default. You can configure your server to use a different templating language with the `view_engine` setting in your config files.
 
 #### Authorize
 
