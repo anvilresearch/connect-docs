@@ -1,10 +1,10 @@
 > **WORK IN PROGRESS**. Bear with us while we develop Connect's docs to be as complete as possible. If you need immediate support, join our Gitter channel by clicking the link below, and we'll help as soon as we can. If you want to work with us to implement or develop Connect for you professionally, contact us on Gitter.
 >
-> Broken on Modulus's end right now. We're working to get it up and running ASAP.
->
 >[![Gitter](https://badges.gitter.im/anvilresearch/connect.svg)](https://gitter.im/anvilresearch/connect)
 =======
 <!-- WIP Guide to Installing on Modulus - Broken on Modulus's end right now. -->
+
+**Notice**: Connect cannot run on Modulus's currently, as a dependency is not compatible with their system. We're working to get it up and running ASAP.
 
 # Modulus
 
@@ -44,15 +44,44 @@ Run `sudo npm install -g modulus` to install the Modulus's CLI. Once you've run 
 Run `modulus login`, and login with your Modulus account credentials.
 
 // Other steps that are important
-6. Navigate to Administration tab !important
-6.1. Enable SSL Redirect
-8 Go to redislabs.com
-7.1. Create account or Login
-7.2. New Redis Subscription
-7.2.1. 30MB Free
-7.2.2 Input Information
-7.2.3 Create a password and REMEMBER IT: c0nn3ct
-7.3 Add redis endpoint to production.json
-8. modulus deploy
-8.1. Select connect project
-9. Run `NODE_ENV=production nv migrate` against local repo
+## Enabling SSL for your Connect instance on Modulus
+SSL is a very important part of Connect - no Connect server should **ever** be run in production without SSL. To enable SSL for a connect instance on Modulus, follow the steps below.
+
+#### Navigate to Administration tab
+
+Go to the administration tab for the (account||server) Connect is running under.
+
+##### Enable SSL Redirect
+Enable the SSL redirect function of the (account||server) that Connect is running on. Once enabled, your Modulus instance will automatically use SSL to serve Connect.
+
+## Spinning up a Redis Database for Connect
+
+#### Sign up or log into Redis Labs
+
+Go to https://redislabs.com/, and create a new account or log into an existing Redis Labs account.
+
+## Create a New Redis Subscription
+
+Create a new Redis Labs subscription:
+* 30MB Free
+* Input (Modulus||Connect) Information
+* Create a password memorable password
+
+# Add redis endpoint to production.json
+
+In the production.json file of your Connect instance, add the correct Redis information that is provided on Redis Labs. Once the Redis Labs database is ready, you are ready to deploy.
+
+## modulus deploy
+Run `modulus deploy` and select the Connect instance you've set up from the CLI.
+Run `NODE_ENV=production nv migrate` against local repo
+
+Your Modulus instance running Connect is almost complete.
+
+## Problems with Modulus.
+Right now, Modulus doesn't work with one of the Connect dependencies - we're working on finding a solution to the problem, and will update this document as soon as it's ready.
+
+If you would like to be notified of when it is working, [create an issue](https://github.com/anvilresearch/connect-docs/issues/new) in the anvilresearch/connect-docs repo and we will alert you when it is ready.
+
+Additionally, if you would like professional support for your connect instance, contact us on our Gitter Channel:
+
+[![Gitter](https://badges.gitter.im/anvilresearch/connect.svg)](https://gitter.im/anvilresearch/connect)
