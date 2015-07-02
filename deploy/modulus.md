@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 > **WORK IN PROGRESS**. Bear with us while we develop Connect's docs to be as complete as possible. If you need immediate support, join our Gitter channel by clicking the link below, and we'll help as soon as we can. If you want to work with us to implement or develop Connect for you professionally, contact us on Gitter.
 >
 > Broken on Modulus's end right now. We're working to get it up and running ASAP.
@@ -6,7 +5,6 @@
 >[![Gitter](https://badges.gitter.im/anvilresearch/connect.svg)](https://gitter.im/anvilresearch/connect)
 =======
 <!-- WIP Guide to Installing on Modulus - Broken on Modulus's end right now. -->
->>>>>>> 1cd4a0495559aeb8d15d79600bca8ed7604efb3f
 
 # Modulus
 
