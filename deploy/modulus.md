@@ -12,11 +12,11 @@
 
 To start the process of deploying Connect to a Modulus project, go to https://modulus.io.
 
-#### Sign in or Create an account
+#### Sign in or Create an Account
 
 Sign into your modulus account, or create a new one if you didn't previously have one.
 
-## New project
+## New Project
 Create a new Modulus project, with the following attributes:
 
 * Input Project Name
@@ -25,7 +25,7 @@ Create a new Modulus project, with the following attributes:
 <!-- ^^ This is the lowest memory available, which we used to test minimum requirements for Connect on Modulus. Update if minimum requirements are higher. -->
 * Default server
 
-## Create a new Anvil Connect project locally
+## Create a New Anvil Connect Project Locally
 Run  `sudo npm install -g anvil-connect` to install the Connect CLI. Once you've run this, you will have access to `nv`, Connect's CLI, globally on your computer or VM.
 
 Then, to initialize an instance of Connect locally, run
@@ -56,7 +56,7 @@ Enable the SSL redirect function of the (account||server) that Connect is runnin
 
 ## Spinning up a Redis Database for Connect
 
-#### Sign up or log into Redis Labs
+#### Sign Up or Log into Redis Labs
 
 Go to https://redislabs.com/, and create a new account or log into an existing Redis Labs account.
 
@@ -67,7 +67,7 @@ Create a new Redis Labs subscription:
 * Input (Modulus||Connect) Information
 * Create a password memorable password
 
-# Add redis endpoint to production.json
+# Add Redis Endpoint to Production.json
 
 In the production.json file of your Connect instance, add the correct Redis information that is provided on Redis Labs. Once the Redis Labs database is ready, you are ready to deploy.
 
