@@ -35,7 +35,7 @@ $ nv add client '{
   "client_name": "Example App",
   "default_max_age": 36000,
   "redirect_uris": ["http://localhost:9000/callback.html"],
-  "post_logout_redirect_uris: ["http://localhost:9000"],
+  "post_logout_redirect_uris": ["http://localhost:9000"],
   "trusted": "true"
 }'
 ```
