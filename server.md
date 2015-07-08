@@ -206,6 +206,10 @@ The providers setting is an object containing settings for various authenticatio
 }
 ```
 
+You can see all the natively supported providers in the [providers directory](https://github.com/anvilresearch/connect/tree/master/providers) in the Anvil Connect repository on GitHub. If you want to use an provider not listed there, you can easily add support in your instance by creating a simple configuration file in a providers directory in your project repository.
+
+#### Password authentication
+
 To enable password authentication, add a `password` property to the `providers` object with a value of `true`. When set to true, `password` _requires_ login with username/password combination for the given providers every time they sign in. If set to `false`, the user will be able to sign in without authenticating with via username/password with the provider if as they are externally logged into that provider already.
 
 ```json
@@ -216,6 +220,8 @@ To enable password authentication, add a `password` property to the `providers` 
   }
 }
 ```
+
+#### OAuth 2.0
 
 Most OAuth 2.0 providers only require a `client_id` and `client_secret`. You can obtain these by registering your app with the respective provider.
 
@@ -260,6 +266,8 @@ OAuth 2.0 supports a `scope` authorization parameter, and some providers use it 
 }
 ```
 
+#### OAuth 1.0
+
 OAuth 1.0 providers require `oauth_consumer_key` and `oauth_consumer_secret`.
 
 
@@ -275,7 +283,61 @@ OAuth 1.0 providers require `oauth_consumer_key` and `oauth_consumer_secret`.
 }
 ```
 
-You can see all the natively supported providers in the [providers directory](https://github.com/anvilresearch/connect/tree/master/providers) in the Anvil Connect repository on GitHub. If you want to use an OAuth provider not listed there, you can easily add support in your instance by creating a simple configuration file in a providers directory in your project repository.
+#### Active Directory
+
+The expected configuration format for the Active Directory provider is as follows:
+
+```json
+{
+  ...
+  "providers": {
+    "ActiveDirectory": {
+      "url": "ldaps://corp.example.com",
+      "domainDn": "dc=example,dc=com",
+      "tlsOptions": {
+        "ca": "/path/to/the/self/signed/ca-cert.cer"
+      }
+    }
+  }
+}
+```
+
+Anvil Connect also provides the `ActiveDirectory` provider template in the event that you may be working with several domains at a time or if you would like to customize certain aspects of the AD provider, such as the name.
+
+Here's an example provider that uses the template:
+
+```javascript
+module.exports = function(config) {
+  return {
+    id: 'examplecorpad',
+    name: 'Example Corporation',
+    templates: [ 'ActiveDirectory' ]
+  };
+};
+```
+
+To configure this provider, you would use `examplecorpad` in place of `ActiveDirectory` in your configuration.
+
+```json
+{
+  ...
+  "providers": {
+    "examplecorpad": { ... }
+  }
+}
+```
+
+
+##### Groups
+
+The Active Directory provider will synchronize the user's role membership in Anvil Connect with their group membership in the AD domain. In order to take advantage of this feature, each AD group for which you wish to enable synchronization must have a respective role in Connect named after the fully-qualified distinguished name (FQDN) of the group in Active Directory.
+
+For example, if there exists a group in AD with FQDN `CN=Group 1,OU=Groups,DN=example,DN=com`, that group will only influence the user's role membership if there also exists a role in Connect named `CN=Group 1,OU=Groups,DN=example,DN=com`. You can create this role using the `nv add role` command:
+
+```bash
+nv add role '{ "name": "CN=Group 1,OU=Groups,DN=example,DN=com" }'
+```
+
 
 
 
