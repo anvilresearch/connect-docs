@@ -24,4 +24,4 @@ Every **Thursday** at **9AM PDT / 12PM EDT / 4PM GMT** we get together to map ou
 
 ## Contributing
 
-To contribute to the docs, you can fork [this repository](https://github.com/anvilresearch/connect-docs) and submit a pull request with your proposed edits. Thanks in advance!
+To contribute to the docs, you can [fork this repository](https://github.com/anvilresearch/connect-docs/fork) and submit a pull request with your proposed edits. Thanks in advance!
