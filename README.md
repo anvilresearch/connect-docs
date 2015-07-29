@@ -4,15 +4,15 @@ This is the official documentation for [Anvil Connect](https://github.com/anvilr
 
 ## Support
 
-### Chat on Gitter
+### Chat on Gitter or Slack
 
-Come say hello on Gitter! We love talking shop with Anvil Connect users :)
+Come say hello on Gitter or Slack! We love talking shop with Anvil Connect users :)
 
-[![Gitter](https://badges.gitter.im/anvilresearch/connect.svg)](https://gitter.im/anvilresearch/connect)
+[![Gitter](https://badges.gitter.im/anvilresearch/connect.svg)](https://gitter.im/anvilresearch/connect) ![Join us in Slack at http://slackin.anvil.io/](http://slackin.anvil.io/badge.svg)
 
 ### Stack Overflow
 
-Ask general usage questions on [Stack Overflow](http://stackoverflow.com/questions/tagged/anvil-connect) using the tag "anvil-connect".
+####Ask general usage questions on [Stack Overflow](http://stackoverflow.com/questions/tagged/anvil-connect) using the tag "anvil-connect".
 
 ### GitHub Issues
 
@@ -20,7 +20,7 @@ If you find errors or omissions in the docs, please [submit an issue](https://gi
 
 ### Weekly Community Meetings
 
-Every **Thursday** at **9AM PDT / 12PM EDT / 4PM GMT** we get together to map out the future of the project, talk through specs, review code, and help each other ship. You're welcome to [join in](https://plus.google.com/hangouts/_/anvil.io/anvil-connect?authuser=0).
+Every Thursday at 9AM PDT / 12PM EDT / 4PM GMT we get together to map out the future of the project, talk through specs, review code, and help each other ship. You're welcome to [join in](https://github.com/anvilresearch/connect/wiki/Weekly-Community-Hangouts-and-Meeting-Notes).
 
 ## Contributing
 
