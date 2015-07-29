@@ -8,7 +8,8 @@ This is the official documentation for [Anvil Connect](https://github.com/anvilr
 
 Come say hello on Gitter or Slack! We love talking shop with Anvil Connect users :)
 
-[![Gitter](https://badges.gitter.im/anvilresearch/connect.svg)](https://gitter.im/anvilresearch/connect) ![Join us in Slack at http://slackin.anvil.io/](http://slackin.anvil.io/badge.svg)
+[![Gitter](https://badges.gitter.im/anvilresearch/connect.svg)](https://gitter.im/anvilresearch/connect) [![Slack](http://slackin.anvil.io/badge.svg)](http://slackin.anvil.io/)
+
 
 ### Stack Overflow
 
