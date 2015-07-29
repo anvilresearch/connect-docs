@@ -3,7 +3,8 @@
 
 We are in Gitter and Slack every day, come join us
 
-[![Gitter](https://badges.gitter.im/anvilresearch/connect.svg)](https://gitter.im/anvilresearch/connect) or ![Join us in Slack at http://slackin.anvil.io/](http://slackin.anvil.io/badge.svg)
+[![Gitter](https://badges.gitter.im/anvilresearch/connect.svg)](https://gitter.im/anvilresearch/connect) or 
+[![Slack](http://slackin.anvil.io/badge.svg)](http://slackin.anvil.io/) 
 
 ##Working Together to Create Great Code
 
