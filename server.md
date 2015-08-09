@@ -76,30 +76,14 @@ $ npm install
 $ bower install
 ```
 
+#### Initializing the database
 
-#### Initialize the database
+In current versions of Anvil Connect, database initialization is handled by the
+server at run-time. See [Run](#Run) for details.
 
-If you're using a fresh Redis installation running on `localhost` and you're ok with using the default (preferably empty) database, because there's no need to configure Redis to be used with Connect. If you're using a remote Redis instance, your instance requires a password, or you want to use a database other than `0`, [edit the config file](#redis) for the environment you're preparing (development or production).
-
-Then, to initialize your development database, run:
-
-```bash
-// development
-$ nv migrate
-```
-
-To initialize a production database, run:
-
-```bash
-// production
-$ NODE_ENV=production nv migrate
-```
-
-This will create default clients, roles, scopes and permissions necessary to operate the authorization server.
-
+`nv migrate` has been deprecated.
 
 ### Run
-
 #### Environments
 
 #### Commands
@@ -121,6 +105,26 @@ To run the server in production, set `NODE_ENV` to `production`:
 $ nv serve --production
 $ node server.js -e production
 $ NODE_ENV=production node server.js
+```
+
+When Anvil Connect starts for the first time, it will check to see whether or
+not the Redis server at the configured hostname and port has any data inside and
+whether or not it contains data from a valid Anvil Connect instance.
+
+If Anvil Connect detects any existing data in the database, and it is not from
+an Anvil Connect instance, it will halt with the following error:
+
+```
+Redis already contains data, but it doesn't seem to be an Anvil Connect database.
+If you are SURE it is, start the server with --no-db-check to skip this check.
+```
+
+If you are sure that there is no conflicting data in Redis, for example,
+in the event that you may have edited Redis's data manually, start Anvil Connect
+with the `--no-db-check` flag.
+
+```bash
+$ node server.js --no-db-check
 ```
 
 
