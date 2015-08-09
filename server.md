@@ -212,6 +212,40 @@ The providers setting is an object containing settings for various authenticatio
 
 You can see all the natively supported providers in the [providers directory](https://github.com/anvilresearch/connect/tree/master/providers) in the Anvil Connect repository on GitHub. If you want to use an provider not listed there, you can easily add support in your instance by creating a simple configuration file in a providers directory in your project repository.
 
+#### amr claim
+
+The `amr` claim is a part of the [OpenID Connect specification][oidcimplicit]
+which stands for Authentication Methods References. It determines which methods
+of authentication were used during the authentication request.
+
+For example, if a user signs in with their e-mail and password, then one of the
+values of the `amr` claim will be `pwd` for password authentication. If the user
+also used two-factor authentication with a disposable token, then the `amr`
+claim will be `[ 'mfa', 'pwd', 'otp' ]` for multi-factor authentication,
+password authentication, and one-time password.
+
+Anvil Connect supports taking advantage of the `amr` claim given that it is
+defined for a particular provider. You can also configure your own value for the
+amr claim for a particular provider in the configuration file.
+
+We use, and recommend the use of, the [IETF amr values draft][ietfamrvalues]
+as a starting point for choosing amr values.
+
+For example, to define an `amr` value of `ad` for authenticating with Active
+Directory:
+
+```json
+{
+  // ...
+  "providers": {
+    "ActiveDirectory": {
+      "amr": "ad",
+      // ...
+    }
+  }
+}
+```
+
 #### Password authentication
 
 To enable password authentication, add a `password` property to the `providers` object with a value of `true`. When set to true, `password` _requires_ login with username/password combination for the given providers every time they sign in. If set to `false`, the user will be able to sign in without authenticating with via username/password with the provider if as they are externally logged into that provider already.
@@ -351,11 +385,11 @@ The configuration file (e.g. development.json, production.json) must have a mail
 
 ```json
 {
-  "mailer": { 
+  "mailer": {
     "from": "Hello World <test@gmail.com>",
     "view_engine": "hogan",
     "service": "Gmail",
-    "auth": { 
+    "auth": {
       "user": "test@gmail.com",
       "pass": "test"
     }
@@ -371,9 +405,9 @@ When a user signs in or signs up using e-mail/password based authentication, the
 
 #### Flow
 
-1. **Email verification enabled, but not required**  
+1. **Email verification enabled, but not required**
    The user is able to sign up for an account with Anvil Connect, and sign in to clients as they normally would, without interruption. However, when the user signs up for the first time, they receive an email asking them to verify their email address.
-2. **Email verification enabled and required**  
+2. **Email verification enabled and required**
    When the user signs up for the first time with an unverified e-mail address, they are redirected to a page that prompts them to check their e-mail for a verification e-mail message. They are also given the option on that page to resend the e-mail in the event that it hasn't made its way through. Until the user verifies their e-mail, they are unable to authenticate with any client.
 
 #### Configuring verification for the entire server
@@ -510,3 +544,6 @@ The template for e-mail verification messages is `verifyEmail`. The template is 
 ### Heroku
 ### Modulus
 -->
+
+[oidcimplicit]: http://openid.net/specs/openid-connect-implicit-1_0.html
+[ietfamrvalues]: http://tools.ietf.org/html/draft-jones-oauth-amr-values-00
