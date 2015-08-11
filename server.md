@@ -320,8 +320,68 @@ OAuth 1.0 providers require `oauth_consumer_key` and `oauth_consumer_secret`.
   }
 }
 ```
+#### LDAP
 
-#### Active Directory
+Because of LDAP's flexible nature, LDAP support is provided in the form of a
+provider template which can be used to handle custom LDAP attribute to OpenID
+Connect claim scenarios. A basic provider that inherits this template without
+modification is provided for convenience.
+
+LDAP providers can be configured as follows:
+
+```json
+{
+  // ...
+  "providers": {
+    "LDAP": {
+      "url": "ldap://corp.example.com",
+      "bindDn": "cn=admin,dc=example,dc=com",
+      "bindCredentials": "pass1234",
+      "searchBase": "ou=people,dc=example,dc=com",
+      "searchFilter": "(cn={{username}})"
+    }
+  }
+}
+```
+
+A [full list of configuration options][passport-ldapauth-config] is available
+from the passport-ldapauth library.
+
+By default, LDAP attributes map to OpenID Connect claims as such:
+
+OpenID Connect claim | LDAP attribute
+-------------------- | --------------
+id | dn
+email | mail
+name | cn
+given\_name | givenName
+family\_name | sn
+phone\_number | telephoneNumber
+address.formatted | postalAddress
+address.street\_address | street
+address.locality | l
+address.region | st
+address.postal\_code | postalCode
+address.country | co
+
+To customize these mappings, simply create your own provider in the `providers`
+folder of your Anvil Connect instance. For example:
+
+```js
+module.exports = function(config) {
+  return {
+    id: 'MyLDAP',
+    name: 'Example Corp.',
+    templates: [ 'LDAP' ],
+    mapping: {
+      id: 'uid',
+      name: 'displayName'
+  };
+};
+```
+
+
+##### Active Directory
 
 The expected configuration format for the Active Directory provider is as follows:
 
@@ -368,12 +428,12 @@ To configure this provider, you would use `examplecorpad` in place of `ActiveDir
 
 ##### Groups
 
-The Active Directory provider will synchronize the user's role membership in Anvil Connect with their group membership in the AD domain. In order to take advantage of this feature, each AD group for which you wish to enable synchronization must have a respective role in Connect named after the fully-qualified distinguished name (FQDN) of the group in Active Directory.
+The LDAP provider will synchronize the user's role membership in Anvil Connect with their group membership in the domain. In order to take advantage of this feature, each LDAP group for which you wish to enable synchronization must have a respective role in Connect named after the fully-qualified distinguished name (FQDN) of the group in the directory.
 
-For example, if there exists a group in AD with FQDN `CN=Group 1,OU=Groups,DN=example,DN=com`, that group will only influence the user's role membership if there also exists a role in Connect named `CN=Group 1,OU=Groups,DN=example,DN=com`. You can create this role using the `nv add role` command:
+For example, if there exists a group in the directory service with FQDN `CN=Group 1,OU=Groups,DC=example,DC=com`, that group will only influence the user's role membership if there also exists a role in Connect named `CN=Group 1,OU=Groups,DC=example,DC=com`. You can create this role using the `nv add role` command:
 
 ```bash
-nv add role '{ "name": "CN=Group 1,OU=Groups,DN=example,DN=com" }'
+nv add role '{ "name": "CN=Group 1,OU=Groups,DC=example,DC=com" }'
 ```
 
 
@@ -547,3 +607,4 @@ The template for e-mail verification messages is `verifyEmail`. The template is 
 
 [oidcimplicit]: http://openid.net/specs/openid-connect-implicit-1_0.html
 [ietfamrvalues]: http://tools.ietf.org/html/draft-jones-oauth-amr-values-00
+[passport-ldapauth-config]: https://github.com/vesse/node-ldapauth-fork/blob/master/lib/ldapauth.js#L22-L94
