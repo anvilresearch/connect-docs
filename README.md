@@ -4,11 +4,11 @@ This is the official documentation for [Anvil Connect](https://github.com/anvilr
 
 ## Support
 
-### Chat on Gitter
+### Chat with us
 
-Come say hello on Gitter! We love talking shop with Anvil Connect users :)
+Come say hello on Gitter or Slack! We love talking shop with Anvil Connect users :)
 
-[![Gitter](https://badges.gitter.im/anvilresearch/connect.svg)](https://gitter.im/anvilresearch/connect)
+[![Gitter](https://badges.gitter.im/anvilresearch/connect.svg)](https://gitter.im/anvilresearch/connect) [![Slack](http://slackin.anvil.io/badge.svg)](http://slackin.anvil.io/)
 
 ### Stack Overflow
 
