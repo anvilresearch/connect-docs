@@ -2,9 +2,11 @@
 
 ### Requirements
 
-Anvil Connect works with the latest versions of [Node.js](https://nodejs.org/) (0.12.x) or [io.js](https://iojs.org/en/index.html) and [Redis](http://redis.io/) (3.0.x).
-
-The server can optionally run inside [Docker](https://www.docker.com/) containers. To run it with Docker or Docker Compose you'll need to have them installed on your system.
+Anvil Connect works with the latest versions of [Node.js](https://nodejs.org/)
+(0.12.x) or [io.js](https://iojs.org/en/index.html) and
+[Redis](http://redis.io/) (3.0.x). The server can optionally run inside
+[Docker](https://www.docker.com/) containers. To run it with Docker or Docker
+Compose you'll need to have them installed on your system.
 
 
 ### Initializing your project

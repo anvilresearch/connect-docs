@@ -1,6 +1,7 @@
 ### Providers
 
-The providers setting is an object containing settings for various authentication methods.
+The providers setting is an object containing settings for various
+authentication methods.
 
 ```json
 {
@@ -9,7 +10,11 @@ The providers setting is an object containing settings for various authenticatio
 }
 ```
 
-You can see all the natively supported providers in the [providers directory](https://github.com/anvilresearch/connect/tree/master/providers) in the Anvil Connect repository on GitHub. If you want to use an provider not listed there, you can easily add support in your instance by creating a simple configuration file in a providers directory in your project repository.
+You can see all the natively supported providers in the
+[providers directory](https://github.com/anvilresearch/connect/tree/master/providers)
+in the Anvil Connect repository on GitHub. If you want to use an provider not
+listed there, you can easily add support in your instance by creating a simple
+configuration file in a providers directory in your project repository.
 
 #### amr claim
 
@@ -47,7 +52,12 @@ Directory:
 
 #### Password authentication
 
-To enable password authentication, add a `password` property to the `providers` object with a value of `true`. When set to true, `password` _requires_ login with username/password combination for the given providers every time they sign in. If set to `false`, the user will be able to sign in without authenticating with via username/password with the provider if as they are externally logged into that provider already.
+To enable password authentication, add a `password` property to the `providers`
+object with a value of `true`. When set to true, `password` _requires_ login
+with username/password combination for the given providers every time they sign
+in. If set to `false`, the user will be able to sign in without authenticating
+with via username/password with the provider if as they are externally logged
+into that provider already.
 
 ```json
 {
@@ -60,7 +70,8 @@ To enable password authentication, add a `password` property to the `providers` 
 
 #### OAuth 2.0
 
-Most OAuth 2.0 providers only require a `client_id` and `client_secret`. You can obtain these by registering your app with the respective provider.
+Most OAuth 2.0 providers only require a `client_id` and `client_secret`. You can
+obtain these by registering your app with the respective provider.
 
 ```json
 {
@@ -74,7 +85,10 @@ Most OAuth 2.0 providers only require a `client_id` and `client_secret`. You can
 }
 ```
 
-OAuth 2.0 supports a `scope` authorization parameter, and some providers use it to restricted access to specific resources. You can set scope for a provider using the `scope` property with an array of strings. See provider API documentation for specifics.
+OAuth 2.0 supports a `scope` authorization parameter, and some providers use it
+to restricted access to specific resources. You can set scope for a provider
+using the `scope` property with an array of strings. See provider API
+documentation for specifics.
 
 ```json
 {
@@ -182,7 +196,8 @@ module.exports = function(config) {
 
 ##### Active Directory
 
-The expected configuration format for the Active Directory provider is as follows:
+The expected configuration format for the Active Directory provider is as
+follows:
 
 ```json
 {
@@ -199,7 +214,9 @@ The expected configuration format for the Active Directory provider is as follow
 }
 ```
 
-Anvil Connect also provides the `ActiveDirectory` provider template in the event that you may be working with several domains at a time or if you would like to customize certain aspects of the AD provider, such as the name.
+Anvil Connect also provides the `ActiveDirectory` provider template in the event
+that you may be working with several domains at a time or if you would like to
+customize certain aspects of the AD provider, such as the name.
 
 Here's an example provider that uses the template:
 
@@ -213,7 +230,8 @@ module.exports = function(config) {
 };
 ```
 
-To configure this provider, you would use `examplecorpad` in place of `ActiveDirectory` in your configuration.
+To configure this provider, you would use `examplecorpad` in place of
+`ActiveDirectory` in your configuration.
 
 ```json
 {
@@ -227,9 +245,17 @@ To configure this provider, you would use `examplecorpad` in place of `ActiveDir
 
 ##### Groups
 
-The LDAP provider will synchronize the user's role membership in Anvil Connect with their group membership in the domain. In order to take advantage of this feature, each LDAP group for which you wish to enable synchronization must have a respective role in Connect named after the fully-qualified distinguished name (FQDN) of the group in the directory.
+The LDAP provider will synchronize the user's role membership in Anvil Connect
+with their group membership in the domain. In order to take advantage of this
+feature, each LDAP group for which you wish to enable synchronization must have
+a respective role in Connect named after the fully-qualified distinguished name
+(FQDN) of the group in the directory.
 
-For example, if there exists a group in the directory service with FQDN `CN=Group 1,OU=Groups,DC=example,DC=com`, that group will only influence the user's role membership if there also exists a role in Connect named `CN=Group 1,OU=Groups,DC=example,DC=com`. You can create this role using the `nv add role` command:
+For example, if there exists a group in the directory service with FQDN
+`CN=Group 1,OU=Groups,DC=example,DC=com`, that group will only influence the
+user's role membership if there also exists a role in Connect named
+`CN=Group 1,OU=Groups,DC=example,DC=com`. You can create this role using the
+`nv add role` command:
 
 ```bash
 nv add role '{ "name": "CN=Group 1,OU=Groups,DC=example,DC=com" }'
