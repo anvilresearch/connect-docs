@@ -501,17 +501,20 @@ When a user signs in or signs up using e-mail/password based authentication, the
 
 ### Redis
 
-Anvil Connect requires access to a Redis database and uses the default host and port for a local instance. To use a remote Redis server, provide url and auth parameters under the "redis" object in your config.
+Anvil Connect requires access to a Redis database and uses the default host and port for a local instance. To use a remote Redis server, provide host, port, and password parameters under the "redis" object in your config.
 
 ```json
 {
   // ...
   "redis": {
-    "url": "redis://HOST:PORT",
-    "auth": "PASSWORD"
+    "host": "HOST",
+    "port": "PORT",
+    "password": "PASSWORD"
   }
 }
 ```
+
+Configuration options for Redis are identical to that of the [supported options for ioredis][ioredis-options].
 
 You can also provide a `db` setting (integer) if you want to use a different Redis database. By default, Redis is configured to support 16 databases (0 - 15). This can be configured in the `redis.conf` file for your Redis installation.
 
@@ -608,3 +611,4 @@ The template for e-mail verification messages is `verifyEmail`. The template is 
 [oidcimplicit]: http://openid.net/specs/openid-connect-implicit-1_0.html
 [ietfamrvalues]: http://tools.ietf.org/html/draft-jones-oauth-amr-values-00
 [passport-ldapauth-config]: https://github.com/vesse/node-ldapauth-fork/blob/master/lib/ldapauth.js#L22-L94
+[ioredis-options]: https://github.com/luin/ioredis/blob/master/API.md#new-redisport-host-options
