@@ -35,7 +35,8 @@ $ openssl rsa -pubout -in config/keys/private.pem -out config/keys/public.pem
 
 **Use:** URI used to identify issuer of authentication
 
-**Description:** Fully qualified base URI of the authorization server; e.g., <code>https://accounts.anvil.io</code>
+**Description:** Fully qualified base URI of the authorization server; e.g.,
+<code>https://accounts.anvil.io</code>
 
 
 ##### port
@@ -44,7 +45,9 @@ $ openssl rsa -pubout -in config/keys/private.pem -out config/keys/public.pem
 
 **Use:** port # the Connect server is run under
 
-**Description:** An integer value representing the port the server will be bound to, unless a <code>PORT</code> environment variable is provided. Defaults to <code>3000</code>.
+**Description:** An integer value representing the port the server will be bound
+to, unless a <code>PORT</code> environment variable is provided. Defaults to
+<code>3000</code>.
 
 ##### cookie_secret
 
@@ -52,7 +55,9 @@ $ openssl rsa -pubout -in config/keys/private.pem -out config/keys/public.pem
 
 **Use:** signing cookies  <!-- under what scope? -->
 
-**Description:** A string used for signing cookies. When you initialize a project, this value is generated for each of your environments. Treat it as confidential and always use separate values for each project and environment.
+**Description:** A string used for signing cookies. When you initialize a
+project, this value is generated for each of your environments. Treat it as
+confidential and always use separate values for each project and environment.
 
 ##### session_secret
 
@@ -60,7 +65,10 @@ $ openssl rsa -pubout -in config/keys/private.pem -out config/keys/public.pem
 
 **Use:** signing session cookies
 
-**Description:** A string used for signing session ID cookies. When you initialize a project, this value is generated for each of your environments. Treat it as confidential and always use separate values for each project and environment.
+**Description:** A string used for signing session ID cookies. When you
+initialize a project, this value is generated for each of your environments.
+Treat it as confidential and always use separate values for each project and
+environment.
 
 ##### client_registration
 
@@ -68,7 +76,11 @@ $ openssl rsa -pubout -in config/keys/private.pem -out config/keys/public.pem
 
 **Use:** Assigning the type of client registration Connect uses
 
-**Description:** Anvil Connect can be configured for three types of client registration: `dynamic`, `token`, or `scoped`, each being more restrictive than the previous option. The default `client_registration` type is `scoped`. For more details, see the section titled [Client Registration](#client-registration-1).
+**Description:** Anvil Connect can be configured for three types of client
+registration: `dynamic`, `token`, or `scoped`, each being more restrictive than
+the previous option. The default `client_registration` type is `scoped`. For
+more details, see the section titled
+[Client Registration](#client-registration-1).
 
 ##### trusted_registration_scope
 
@@ -76,5 +88,7 @@ $ openssl rsa -pubout -in config/keys/private.pem -out config/keys/public.pem
 
 **Use:** signing session cookies
 
-**Description:** `trusted_registration_scope` signals if a client is trusted or not - trusted clients require additional scope to register. It defaults to `realm`.
+**Description:** `trusted_registration_scope` signals if a client is trusted or
+not - trusted clients require additional scope to register. It defaults to
+`realm`.
 
