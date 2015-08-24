@@ -2,11 +2,26 @@
 
 ### Requirements
 
-Anvil Connect works with the latest versions of [Node.js](https://nodejs.org/)
-(0.12.x) or [io.js](https://iojs.org/en/index.html) and
-[Redis](http://redis.io/) (3.0.x). The server can optionally run inside
-[Docker](https://www.docker.com/) containers. To run it with Docker or Docker
-Compose you'll need to have them installed on your system.
+Anvil Connect works with the latest versions of [Node.js][nodejs] (0.12.x) or
+[io.js][iojs] (3.x.x) and [Redis][redis] (3.0.x) and is tested on
+[Debian][debian], [Unbuntu][ubuntu], [Alpine][alpine] Linux distributions, and
+Mac OS X.
+
+The server and its dependencies can optionally run inside [Docker][docker]
+containers. We recommend using Docker Compose, although it is not required.
+[Installation instructions][docker-install] for Docker and related tools are
+available on the Docker website. On Mac and Windows you can easily set up a
+Docker environment using the [Docker Toolbox][docker-toolbox].
+
+[nodejs]: https://nodejs.org
+[iojs]: https://iojs.org
+[redis]: http://redis.io
+[debian]: https://www.debian.org
+[ubuntu]: http://www.ubuntu.com
+[alpine]: https://www.alpinelinux.org
+[docker]: https://www.docker.com
+[docker-install]: https://docs.docker.com/installation
+[docker-toolbox]: https://www.docker.com/toolbox
 
 
 ### Initializing your project
@@ -19,58 +34,142 @@ $ npm install -g anvil-connect-cli
 ```
 
 After this has completed successfully, you can generate all the files you'll
-need to run your own custom auth server. First, make a new directory and `cd`
-into it. Then, run `nvl init` and answer the prompts. With default options,
-this command will generate all the files you need to customize and run Anvil
-Connect, with or without Docker, Redis and nginx, depending on your prompt
-selections. If you choose to use nginx, you'll also be prompted to create a new
-self-signed SSL certificate. You can opt out of any of the components other
-than Anvil Connect.
+need to run your own custom auth server.
+
+First, make a new directory and `cd` into it. Then, run `nvl init`.
 
 ```
+$ mkdir myauthserver
+$ cd myauthserver
 $ nvl init
-? What would you like to name your Connect instance? myconnect
-? What (sub)domain will you use? myconnect.example.com
+```
+
+This command will prompt you for some essential information and choices about
+your deployment.
+
+With default options, this command will generate all the files you
+need to customize and run Anvil Connect, with or without Docker, Redis and
+nginx, depending on your prompt selections.
+
+If you choose to use nginx, you'll also be prompted to create a new self-signed
+SSL certificate. You can opt out of any of the components other than Anvil
+Connect.
+
+```bash
+# defaults to the name of the current directory
+? What would you like to name your Connect instance?
+
+# FQDN of the auth server
+# This can be localhost, an IP address, or a (sub)domain
+? What (sub)domain will you use? connect.example.io
+
+# We recommend our default Docker setup, including
+# support for running Anvil Connect, Redis, and nginx
+# with Docker Compose. You can opt out of any or all
+# of this if Docker isn't your cup of tea.
 ? Would you like to use Docker? Yes
+
+# We can generate a Redis configuration and optional
+# Dockerfile. You can also configure Anvil Connect to
+# run against any Redis instance available over the
+# network.
 ? Would you like to run Redis? Yes
+
+# We recommend using nginx for SSL termination, load balancing,
+# and caching of static assets. If you wish to employ other means
+# answer "no".
 ? Would you like to run nginx? Yes
+
+# With nginx or without it, be sure to use SSL in production
 ? Would you like to create a self-signed SSL cert? Yes
+
+# If you opt "yes" to generating an SSL cert, you'll be
+# prompted for the certificate subject information.
 ? Country Name (2 letter code) US
 ? State or Province Name (full name) South Dakota
 ? Locality Name (eg, city) Rapid City
-? Organization Name (eg, company) Anvil Research, Inc.
+? Organization Name (eg, company) Anvil Research, Inc
 ```
 
 Once finished, you'll have a directory containing all the files needed to run
-your auth server. Anvil Connect itself is required as a dependency via npm.
+your auth server.
+
 We've structured the package so that you can customize your server without
 having to maintain a fork. You can add your own static assets, customize views
 (HTML templates), integrate custom auth protocols, manage project-specific
 dependencies, and keep all this, along with your configuration files, under
-version control. This setup makes upgrading Anvil Connect as simple as changing
-the version number in `package.json` in most cases.
+version control using git. This setup makes upgrading Anvil Connect as simple
+as changing the version number in `connect/package.json` in most cases.
 
 
 ## Run
 
+### Running locally
+
+A Redis instance needs to running locally or accessible over the network. Before you
+can run Anvil Connect, you'll also need to install npm and bower dependencies.
+
+```bash
+$ cd connect
+$ npm install
+$ bower install
+```
+
+You can run the server in `development` mode with:
+
+```bash
+$ node server.js
+```
+
+This will use the `config/development.json` settings. To run in production mode, set
+the `NODE_ENV` environment variable to `production`.
+
+```bash
+$ NODE_ENV=production node server.js
+```
+
+When Anvil Connect starts for the first time, it will check to see whether or
+not the Redis server at the configured hostname and port has any data inside and
+whether or not it contains data from a valid Anvil Connect instance.
+
+If Anvil Connect detects any existing data in the database, and it is not from
+an Anvil Connect instance, it will halt with the following error:
+
+```
+Redis already contains data, but it doesn't seem to be an Anvil Connect database.
+If you are SURE it is, start the server with --no-db-check to skip this check.
+```
+
+If you are sure that there is no conflicting data in Redis, for example,
+in the event that you may have edited Redis's data manually, start Anvil Connect
+with the `--no-db-check` flag.
+
+```bash
+$ node server.js --no-db-check
+```
+
+
+
 ### Running in Docker Containers
 
 If you've opted to use Docker, Redis, and nginx, you should be ready to roll.
-To run a complete, production-ready set of containers you can use Docker
-Compose. First, you'll want to ensure a few things.
+You can use Docker Compose to run a complete, production-ready set of
+containers.
+
+First, you'll want to ensure a few things are in order.
 
 #### IP Address
 
-If you're running on Linux, the IP address Connect will be bound to is
-localhost and/or the IP of your computer/server. Once the containers are
-running, you should be able to reach the service at `https://0.0.0.0`.
+If you're running on Linux, Anvil Connect will be bound to localhost and/or the
+IP of your computer/server. Once the containers are running, you should be able
+to reach the service at `https://0.0.0.0`.
 
-On Mac and other systems you may need to install boot2docker in order to run
-Docker containers locally. Once you've installed boot2docker, you can obtain
-the IP address of your local Docker host by running:
+
+On Mac once you've installed the [Docker Toolbox][docker-toolbox] you can get
+the IP address with the following command.
 
 ```bash
-boot2docker ip
+$ docker-machine ip default
 ```
 
 #### /etc/hosts
@@ -81,21 +180,20 @@ associate the (sub)domain you provided the generator with `boot2docker` IP
 address.
 
 ```bash
-192.168.59.103 connect.example.io
+192.168.99.100 connect.example.io
 ```
-
-#### RSA Key Pair
-
 
 #### SSL Certificate
 
 When you ran `nv init`, you may have opted to generate a self-signed SSL
 certificate. The files were created in the `nginx/certs` directory of this
 project. If you did not opt to generate these files, you'll need to provide
-your own `nginx.key` and `nginx.crt` files.
+your own `nginx.key` and `nginx.crt` files in the `nginx/certs` directory.
 
 
-#### Start Anvil Connect
+#### Start Anvil Connect with Docker Compose
+
+You can run these commands in the directory where you ran `nvl init`.
 
 ```bash
 $ docker-compose up -d
@@ -114,6 +212,9 @@ $ docker-compose restart
 ```
 
 #### View Logs
+
+If you're having trouble reaching the running Anvil Connect instance, you can
+view the logs for each type of container with the following command.
 
 ```
 $ docker-compose logs <connect|nginx|redis>
@@ -143,69 +244,5 @@ them in the `image` property in `docker-compose.yml`.
 connect:
   #build: connect
   image: <dockerhubusername>/connect
-```
-
-### Running without Docker
-
-#### Install Dependencies
-
-Now you can install npm and bower dependencies, if you want to run Connect
-locally.
-
-```bash
-$ npm install
-$ bower install
-```
-
-#### Initializing the database
-
-In current versions of Anvil Connect, database initialization is handled by the
-server at run-time. See [Run](#Run) for details.
-
-`nv migrate` has been deprecated.
-
-#### Environments
-
-#### Commands
-There are two environments to run the Connect server in, `development`, and
-`production`. The development server is for local testing, setup, and
-development on Connect itself. The production environment should be used when
-deployed to a live environment.
-
-To run the authorization server in `development` mode, you can run the server
-by simply starting it:
-
-```bash
-# The following are equivalent, any of them will start the development server
-$ node server.js
-$ npm start
-```
-
-To run the server in production, set `NODE_ENV` to `production`:
-
-```bash
-# The following are equivalent, any of them will start the production server
-$ node server.js -e production
-$ NODE_ENV=production node server.js
-```
-
-When Anvil Connect starts for the first time, it will check to see whether or
-not the Redis server at the configured hostname and port has any data inside and
-whether or not it contains data from a valid Anvil Connect instance.
-
-If Anvil Connect detects any existing data in the database, and it is not from
-an Anvil Connect instance, it will halt with the following error:
-
-```
-Redis already contains data, but it doesn't seem to be an Anvil Connect database.
-If you are SURE it is, start the server with --no-db-check to skip this check.
-```
-
-If you are sure that there is no conflicting data in Redis, for example,
-in the event that you may have edited Redis's data manually, start Anvil Connect
-with the `--no-db-check` flag.
-
-```bash
-$ node server.js --no-db-check
 ```
 
