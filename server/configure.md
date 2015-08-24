@@ -26,69 +26,13 @@ $ openssl genrsa -out config/keys/private.pem 2048
 $ openssl rsa -pubout -in config/keys/private.pem -out config/keys/public.pem
 ```
 
-
 ### Server Settings
 
-##### issuer
-
-**Type:** string
-
-**Use:** URI used to identify issuer of authentication
-
-**Description:** Fully qualified base URI of the authorization server; e.g.,
-<code>https://accounts.anvil.io</code>
-
-
-##### port
-
-**Type:** integer
-
-**Use:** port # the Connect server is run under
-
-**Description:** An integer value representing the port the server will be bound
-to, unless a <code>PORT</code> environment variable is provided. Defaults to
-<code>3000</code>.
-
-##### cookie_secret
-
-**Type:** string
-
-**Use:** signing cookies  <!-- under what scope? -->
-
-**Description:** A string used for signing cookies. When you initialize a
-project, this value is generated for each of your environments. Treat it as
-confidential and always use separate values for each project and environment.
-
-##### session_secret
-
-**Type:** string
-
-**Use:** signing session cookies
-
-**Description:** A string used for signing session ID cookies. When you
-initialize a project, this value is generated for each of your environments.
-Treat it as confidential and always use separate values for each project and
-environment.
-
-##### client_registration
-
-**Type:** string - options: `dynamic`, `token`, or `scoped`
-
-**Use:** Assigning the type of client registration Connect uses
-
-**Description:** Anvil Connect can be configured for three types of client
-registration: `dynamic`, `token`, or `scoped`, each being more restrictive than
-the previous option. The default `client_registration` type is `scoped`. For
-more details, see the section titled
-[Client Registration](#client-registration-1).
-
-##### trusted_registration_scope
-
-**Type:** string - options: `realm`, Connect operator's own registered scope(s)
-
-**Use:** signing session cookies
-
-**Description:** `trusted_registration_scope` signals if a client is trusted or
-not - trusted clients require additional scope to register. It defaults to
-`realm`.
-
+Setting | Type | Default | Description
+------- | ---- | ------- | -----------
+**issuer** | string | (none) | URI used to identify issuer of authentication
+**port** | integer | 3000 | Port the Connect server is bound to
+**cookie_secret** | string | (generated) | Secret string used to sign secure cookies
+**session_secret** | string | (generated) | Secret string used to sign session ID cookies
+**client_registration** | string | `scoped` | Type of client registration - `dynamic`, `token`, or `scoped` ([Explanation](../clients.md#registration))
+**trusted_registration_scope** | string | `realm` | Scope used to identify trusted clients.
