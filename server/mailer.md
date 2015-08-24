@@ -38,12 +38,12 @@ claim if available. Otherwise, the user's e-mail address stays unverified.
 
 #### Flow
 
-1. **Email verification enabled, but not required**
+1. **Email verification enabled, but not required**  
    The user is able to sign up for an account with Anvil Connect, and sign in
    to clients as they normally would, without interruption. However, when the
    user signs up for the first time, they receive an email asking them to verify
    their email address.
-2. **Email verification enabled and required**
+2. **Email verification enabled and required**  
    When the user signs up for the first time with an unverified e-mail address,
    they are redirected to a page that prompts them to check their e-mail for a
    verification e-mail message. They are also given the option on that page to
