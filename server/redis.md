@@ -1,4 +1,4 @@
-### Redis
+## Redis
 
 Anvil Connect requires access to a Redis database and uses the default host and 
 port for a local instance. To use a remote Redis server, provide host, port, 

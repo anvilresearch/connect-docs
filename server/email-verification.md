@@ -1,4 +1,4 @@
-### Configuring e-mail verification
+## Configuring e-mail verification
 
 Anvil Connect supports verifying user e-mail addresses to ensure that the user
 has ownership/control over their registered address. By default, configuring the

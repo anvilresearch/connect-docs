@@ -1,4 +1,4 @@
-### Configuring the mailer
+## Configuring the mailer
 
 Anvil Connect uses [nodemailer](https://github.com/andris9/Nodemailer) for
 sending emails for the purposes of email verification, and other functionality
