@@ -26,9 +26,9 @@ Setting | Type | Default | Description
 
 If you generated a deployment repository with `nv init`, a new RSA key pair
 will be generated for you in `connect/config/keys`. This pair of files is 
-required for signing and verifying tokens. We recommend using the generated 
-files. If the server does not find key pairs when starting, it will attempt to 
-generate them for you using the OpenSSL package installed on your system. 
+required for signing and verifying tokens. If the server does not find key 
+pairs when starting, it will attempt to generate them for you using the OpenSSL 
+package installed on your system. 
 
 If you want or need to provide your own RSA key pair, you can obtain it using
 OpenSSL and import them to the proper location, `connect/config/keys/private.pem` 
