@@ -9,7 +9,7 @@ their e-mail address is unverified at first. If the user signs in or signs up
 using a third-party provider, then Connect will inherit the `email_verified`
 claim if available. Otherwise, the user's e-mail address stays unverified.
 
-#### Flow
+### Flow
 
 1. **Email verification enabled, but not required**  
    The user is able to sign up for an account with Anvil Connect, and sign in
@@ -23,7 +23,7 @@ claim if available. Otherwise, the user's e-mail address stays unverified.
    resend the e-mail in the event that it hasn't made its way through. Until the
    user verifies their e-mail, they are unable to authenticate with any client.
 
-#### Configuring verification for the entire server
+### Configuring verification for the entire server
 
 ```json
 {
@@ -35,7 +35,7 @@ claim if available. Otherwise, the user's e-mail address stays unverified.
 }
 ```
 
-#### Configuring verification for specific providers
+### Configuring verification for specific providers
 
 ```json
 {
