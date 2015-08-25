@@ -49,6 +49,13 @@ documentation for specifics.
 
 ### Creating a new OAuth 2.0 provider
 
+To integrate with a provider we don't support out of the box, you can create 
+your own provider definition in a custom `connect/providers` directory in your
+project. You can use [officially supported provider definitions][supported-providers] 
+as examples.
+
+[supported-providers]: https://github.com/anvilresearch/connect/tree/master/providers
+
 ```
 /**
  * GitHub
