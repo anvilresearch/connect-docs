@@ -25,18 +25,18 @@ Setting | Type | Default | Description
 ### Key pairs
 
 If you generated a deployment repository with `nv init`, a new RSA key pair
-will be generated for you in `config/keys`. This pair of files is required for
-signing and verifying tokens. We recommend using the generated files. We have
-set up key generation to lower the barrier to entry, as it is a tedious,
-precise process to do by hand.
+will be generated for you in `connect/config/keys`. This pair of files is 
+required for signing and verifying tokens. We recommend using the generated 
+files. If the server does not find key pairs when starting, it will attempt to 
+generate them for you using the OpenSSL package installed on your system. 
 
 If you want or need to provide your own RSA key pair, you can obtain it using
-OpenSSL and import them to the proper location, `config/keys/private.pem` for
-the private key and `config/keys/public.pem` for the public key.
+OpenSSL and import them to the proper location, `connect/config/keys/private.pem` 
+for the private key and `connect/config/keys/public.pem` for the public key.
 
 ```
 $ cd PROJECT_ROOT
-$ mkdir -p config/keys
-$ openssl genrsa -out config/keys/private.pem 2048
-$ openssl rsa -pubout -in config/keys/private.pem -out config/keys/public.pem
+$ mkdir -p connect/config/keys
+$ openssl genrsa -out connect/config/keys/private.pem 4096
+$ openssl rsa -pubout -in connect/config/keys/private.pem -out connect/config/keys/public.pem
 ```
