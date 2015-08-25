@@ -246,3 +246,4 @@ connect:
   image: <dockerhubusername>/connect
 ```
 
+### [Configuring the server](server/configuration.md)
