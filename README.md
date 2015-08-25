@@ -2,6 +2,8 @@
 
 This is the official documentation for [Anvil Connect](https://github.com/anvilresearch/connect) and related projects.
 
+## [Getting started](getting-started.md)
+
 ## Support
 
 ### Chat with us
