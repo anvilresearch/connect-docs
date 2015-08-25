@@ -69,6 +69,40 @@ mapping would contain `email: 'info.emails.home'`. The value side of a mapping
 can also be a function, where the argument is the entire user info object from
 the provider.
 
+#### amr claim
+
+The `amr` claim is a part of the [OpenID Connect specification][oidcimplicit]
+which stands for Authentication Methods References. It determines which methods
+of authentication were used during the authentication request.
+
+For example, if a user signs in with their e-mail and password, then one of the
+values of the `amr` claim will be `pwd` for password authentication. If the user
+also used two-factor authentication with a disposable token, then the `amr`
+claim will be `[ 'mfa', 'pwd', 'otp' ]` for multi-factor authentication,
+password authentication, and one-time password.
+
+Anvil Connect supports taking advantage of the `amr` claim given that it is
+defined for a particular provider. You can also configure your own value for the
+amr claim for a particular provider in the configuration file.
+
+We use, and recommend the use of, the [IETF amr values draft][ietfamrvalues]
+as a starting point for choosing amr values.
+
+For example, to define an `amr` value of `ad` for authenticating with Active
+Directory:
+
+```json
+{
+  // ...
+  "providers": {
+    "ActiveDirectory": {
+      "amr": "ad",
+      // ...
+    }
+  }
+}
+```
+
 #### Contributing commonly used providers
 
 Contributing new OAuth and OAuth 2.0 providers is one of the easiest ways to
@@ -84,5 +118,5 @@ this folder.
 - [Password](Password.md)
 - [OAuth 2.0](OAuth2.md)
 - [OAuth](OAuth.md)
-- [LDAP](LDAP.md)
+- [LDAP and Active Directory](LDAP.md)
 
