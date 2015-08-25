@@ -16,6 +16,15 @@ Setting | Type | Default | Description
 **client_registration** | string | `scoped` | Type of client registration - `dynamic`, `token`, or `scoped` ([Explanation](../clients.md#registration))
 **trusted_registration_scope** | string | `realm` | Scope used to identify trusted clients.
 
+
+### OpenID Metadata
+
+[OpenID Provider Metadata](http://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata) 
+default values can be overridden by defining them in the configuration file. 
+Don't change these unless you know what you're doing.
+
+
+
 ### [Configuring Redis](redis.md)
 
 ### [Configuring the mailer](mailer.md)
