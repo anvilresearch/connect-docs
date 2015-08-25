@@ -33,9 +33,8 @@ include OpenSSL by default. You can also [install it on Windows][ssl-windows].
 
 [ssl-windows]: https://slproweb.com/products/Win32OpenSSL.html
 
-If you want or need to provide your own RSA key pair, you can obtain it using
-OpenSSL and import them to the proper location, `connect/config/keys/private.pem` 
-for the private key and `connect/config/keys/public.pem` for the public key.
+If you want to provide your own RSA key pair files, you can generate them 
+manually with OpenSSL.
 
 ```
 $ cd PROJECT_ROOT
