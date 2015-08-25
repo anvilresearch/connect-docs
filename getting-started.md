@@ -4,7 +4,7 @@
 
 Anvil Connect works with the latest versions of [Node.js][nodejs] (0.12.x) or
 [io.js][iojs] (3.x.x) and [Redis][redis] (3.0.x) and is tested on
-[Debian][debian], [Unbuntu][ubuntu], [Alpine][alpine] Linux distributions, and
+[Debian][debian], [Ubuntu][ubuntu], [Alpine][alpine] Linux distributions, and
 Mac OS X.
 
 The server and its dependencies can optionally run inside [Docker][docker]
@@ -47,7 +47,7 @@ $ nvl init
 This command will prompt you for some essential information and choices about
 your deployment.
 
-With default options, this command will generate all the files you
+With default options, `nv init` will generate all the files you
 need to customize and run Anvil Connect, with or without Docker, Redis and
 nginx, depending on your prompt selections.
 
@@ -162,7 +162,8 @@ First, you'll want to ensure a few things are in order.
 
 If you're running on Linux, Anvil Connect will be bound to localhost and/or the
 IP of your computer/server. Once the containers are running, you should be able
-to reach the service at `https://0.0.0.0`.
+to reach the service at `https://0.0.0.0`, `https://127.0.0.1`, or 
+`https://localhost`.
 
 
 On Mac once you've installed the [Docker Toolbox][docker-toolbox] you can get
@@ -176,8 +177,8 @@ $ docker-machine ip default
 
 To work with your Anvil Connect instance locally, it's a good idea to make an
 entry in your `/etc/hosts` file. For example, on a Mac, you'll want to
-associate the (sub)domain you provided the generator with `boot2docker` IP
-address.
+associate the (sub)domain you provided the generator with the IP address of 
+your Docker host.
 
 ```bash
 192.168.99.100 connect.example.io
