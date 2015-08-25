@@ -1,11 +1,26 @@
-## Configure
+## Configuration
 
-### JSON files
+### Server Settings
 
 Anvil Connect loads its configuration from a JSON file in the `config`
 directory of the current working directory for the process. File names must
 match the `NODE_ENV` value. If `NODE_ENV` is not set, `config/development.json`
 will be loaded.
+
+Setting | Type | Default | Description
+------- | ---- | ------- | -----------
+**issuer** | string | (none) | URI used to identify issuer of authentication
+**port** | integer | 3000 | Port the Connect server is bound to
+**cookie_secret** | string | (generated) | Secret string used to sign secure cookies
+**session_secret** | string | (generated) | Secret string used to sign session ID cookies
+**client_registration** | string | `scoped` | Type of client registration - `dynamic`, `token`, or `scoped` ([Explanation](../clients.md#registration))
+**trusted_registration_scope** | string | `realm` | Scope used to identify trusted clients.
+
+### [Configuring Redis](redis.md)
+
+### [Configuring the mailer](mailer.md)
+
+### [Configuring the logger](logger.md)
 
 ### Key pairs
 
@@ -25,14 +40,3 @@ $ mkdir -p config/keys
 $ openssl genrsa -out config/keys/private.pem 2048
 $ openssl rsa -pubout -in config/keys/private.pem -out config/keys/public.pem
 ```
-
-### Server Settings
-
-Setting | Type | Default | Description
-------- | ---- | ------- | -----------
-**issuer** | string | (none) | URI used to identify issuer of authentication
-**port** | integer | 3000 | Port the Connect server is bound to
-**cookie_secret** | string | (generated) | Secret string used to sign secure cookies
-**session_secret** | string | (generated) | Secret string used to sign session ID cookies
-**client_registration** | string | `scoped` | Type of client registration - `dynamic`, `token`, or `scoped` ([Explanation](../clients.md#registration))
-**trusted_registration_scope** | string | `realm` | Scope used to identify trusted clients.
