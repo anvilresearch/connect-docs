@@ -14,7 +14,7 @@ Come say hello on Gitter or Slack! We love talking shop with Anvil Connect users
 
 ### Stack Overflow
 
-####Ask general usage questions on [Stack Overflow](http://stackoverflow.com/questions/tagged/anvil-connect) using the tag "anvil-connect".
+Ask general usage questions on [Stack Overflow](http://stackoverflow.com/questions/tagged/anvil-connect) using the tag "anvil-connect".
 
 ### GitHub Issues
 
