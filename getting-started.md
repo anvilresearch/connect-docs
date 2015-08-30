@@ -59,7 +59,7 @@ $ nvl init
 This command will prompt you for some essential information and choices about
 your deployment.
 
-With default options, `nv init` will generate all the files you
+With default options, `nvl init` will generate all the files you
 need to customize and run Anvil Connect, with or without Docker, Redis and
 nginx, depending on your prompt selections.
 
@@ -198,7 +198,7 @@ your Docker host.
 
 #### SSL Certificate
 
-When you ran `nv init`, you may have opted to generate a self-signed SSL
+When you ran `nvl init`, you may have opted to generate a self-signed SSL
 certificate. The files were created in the `nginx/certs` directory of this
 project. If you did not opt to generate these files, you'll need to provide
 your own `nginx.key` and `nginx.crt` files in the `nginx/certs` directory.
