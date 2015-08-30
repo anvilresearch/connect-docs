@@ -120,9 +120,9 @@ For example, if there exists a group in the directory service with FQDN
 `CN=Group 1,OU=Groups,DC=example,DC=com`, that group will only influence the
 user's role membership if there also exists a role in Connect named
 `CN=Group 1,OU=Groups,DC=example,DC=com`. You can create this role using the
-`nv add role` command:
+`nvl add role` command:
 
 ```bash
-nv add role '{ "name": "CN=Group 1,OU=Groups,DC=example,DC=com" }'
+nvl add role '{ "name": "CN=Group 1,OU=Groups,DC=example,DC=com" }'
 ```
 

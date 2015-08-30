@@ -27,11 +27,11 @@ There are three ways to register clients with Anvil Connect. You can use the Anv
 
 ### CLI command
 
-The quickest way to register a client is with the `nv` CLI tool. Run it from the root of your project.
+The quickest way to register a client is with the `nvl` CLI tool. Run it from the root of your project.
 
 
 ```bash
-$ nv add client '{
+$ nvl add client '{
   "client_name": "Example App",
   "default_max_age": 36000,
   "redirect_uris": ["http://localhost:9000/callback.html"],
@@ -277,7 +277,7 @@ You can assign a role to a client using the CLI.
 
 ```bash
 # -c indicates the assignment should be made to a client
-$ nv assign -c <CLIENT_ID> <ROLE>
+$ nvl assign -c <CLIENT_ID> <ROLE>
 ```
 
 ## Client Libraries
