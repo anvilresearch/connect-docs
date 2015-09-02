@@ -13,8 +13,14 @@ As an identity provider, Anvil Connect can optionally authenticate users of thir
 
 ### Application Type
 
-Anvil Connect supports three kinds of clients: `web`, `native`, and `service`. The type of client is determined by the [application_type](#application-type) property, which defaults to `web`. `web` clients can be server side apps like you might build with Rails or HTML5 apps that run entirely in the browser. `native` clients include iOS, Android, desktop, and CLI apps. `service` type clients include RESTful and realtime APIs. Users typically don't interact directly with services. Use this type if your client will acquire client-only credentials without user intervention.
+The application type, or type of client, is determined by the `application_type` property, which defaults to `web`. Anvil Connect supports the `application_type` values [defined in the OpenID Connect standard][oidc-client-reg-metadata]:
 
+ - **`web`** - server-side apps like you might build with Rails or HTML5 apps that run entirely in the browser
+ - **`native`** - iOS, Android, desktop, and CLI apps
+
+In addition, Anvil Connect supports the **`service`** application type for use with RESTful and realtime APIs. Users typically don't interact directly with services; use this type if your client will acquire client-only credentials without user intervention.
+
+[oidc-client-reg-metadata]: https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata
 
 ## Registration
 
