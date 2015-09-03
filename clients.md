@@ -4,8 +4,6 @@
 After setting up your Anvil Connect server, the next step is to register apps and services, called clients, to obtain credentials and configure relevant [properties](#client-properties), depending on the type of client. Once you've done this, you can add a library dependency to your client code and configure it to use your auth server and credentials.
 
 
-## Client Types
-
 ### Trusted Clients
 
 As an identity provider, Anvil Connect can optionally authenticate users of third party apps against your auth server. When users come from another developer's app, the server prompts users to authorize access to their account. This is important when sharing data outside of your own realm, but unnecessary for your own apps. To streamline the user experience, you can register "trusted" apps.
@@ -21,6 +19,43 @@ The application type, or type of client, is determined by the `application_type`
 In addition, Anvil Connect supports the **`service`** application type for use with RESTful and realtime APIs. Users typically don't interact directly with services; use this type if your client will acquire client-only credentials without user intervention.
 
 [oidc-client-reg-metadata]: https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata
+
+
+### Grant Types
+
+Grant types determine what kind of _authorization grants_ the client is allowed to handle. There are three supported grant types in Anvil Connect, derived from the OpenID Connect specification:
+
+ - **`authorization_code`** - for server-side apps that can obtain tokens from the auth server behind the scenes
+ - **`implicit`** - for apps that run on the client and need to get tokens directly from the auth server
+ - **`refresh_token`** - for apps that need to "refresh" tokens when the user needs to stay signed in for prolonged periods
+
+If left unspecified, the allowed grant types for a client default to only `authorization_code`.
+
+### Response Types
+
+Response types are related to grant types, but instead determine the exact types of tokens/data the client expects to handle. The supported response types are:
+
+ - **`code`** - an authorization code, as opposed to an actual token
+ - **`token`** - the access token, used to get access to resources, such as the `userinfo` endpoint
+ - **`id_token`** - the ID token, which identifies the signed-in user
+ - **`none`** - nothing - the client just wants to check if authentication worked without touching any further data; cannot be used with other response types
+
+If left unspecified, the allowed response types for a client default to only `code`.
+
+Response types can be combined into sets to indicate that a client intends to use certain combinations together. For example, `code token` indicates that the client would like to obtain an authorization code together with an access token.
+
+Each combination of response types must be explicitly defined for those response types to be used together in a request. Each possible permutation of that combination does not need to specified, however.
+
+For example, assuming that a client needs to obtain an access token, an ID token, and an authorization code, the client will need to have `code id_token token` in its registered list of response types. `code token id_token`, `token code id_token`, etc. would all have the same effect.
+
+Response types require that their related grant types are set on the client:
+
+Response type | Required grant type
+------------- | -------------------
+`code` | `authorization_code`
+`token` | `implicit`
+`id_token` | `implicit`
+`none` | N/A
 
 ## Registration
 
@@ -40,6 +75,8 @@ The quickest way to register a client is with the `nv` CLI tool. Run it from the
 $ nv add client '{
   "client_name": "Example App",
   "default_max_age": 36000,
+  "response_types": ["code"],
+  "grant_types": ["authorization_code"],
   "redirect_uris": ["http://localhost:9000/callback.html"],
   "post_logout_redirect_uris": ["http://localhost:9000"],
   "trusted": "true"
@@ -217,6 +254,22 @@ URI of the application or information about the application.
 
 ```
 "client_uri": "http://app.example.com"
+```
+
+#### response_types
+
+Array of allowed response types. Valid values are `code`, `token`, `id_token`, and combinations of the three. `none` is also a valid option, but cannot be in a set with other response types, i.e. `[ "none", "code" ]` is valid but `[ "none code" ]` is not. Defaults to `[ "code" ]`. _[See response types for more details.](#response-types)_
+
+```
+"response_types": [ "code" ]
+```
+
+#### grant_types
+
+Array of allowed grant types. Valid values are `authorization_code`, `implicit`, and `refresh_token`. Defaults to `[ "authorization_code" ]`. _[See grant types for more details.](#grant-types)_
+
+```
+"grant_types": [ "authorization_code" ]
 ```
 
 #### default_max_age
