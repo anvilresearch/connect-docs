@@ -23,7 +23,7 @@ In addition, Anvil Connect supports the **`service`** application type for use w
 
 ### Grant Types
 
-Grant types determine what kind of _authorization grants_ the client is allowed to handle. There are three supported grant types in Anvil Connect, derived from the OpenID Connect specification:
+Grant types determine what kind of _authorization grants_ the client is allowed to request. Anvil Connect supports three grant types derived from the OpenID Connect specification:
 
  - **`authorization_code`** - for server-side apps that can obtain tokens from the auth server behind the scenes
  - **`implicit`** - for apps that run on the client and need to get tokens directly from the auth server
@@ -35,9 +35,9 @@ If left unspecified, the allowed grant types for a client default to only `autho
 
 Response types are related to grant types, but instead determine the exact types of tokens/data the client expects to handle. The supported response types are:
 
- - **`code`** - an authorization code, as opposed to an actual token
- - **`token`** - the access token, used to get access to resources, such as the `userinfo` endpoint
- - **`id_token`** - the ID token, which identifies the signed-in user
+ - **`code`** - an authorization code used to obtain tokens
+ - **`token`** - an access token, used to access resources such as the `userinfo` endpoint
+ - **`id_token`** - an ID token, which identifies the signed-in user
  - **`none`** - nothing - the client just wants to check if authentication worked without touching any further data; cannot be used with other response types
 
 If left unspecified, the allowed response types for a client default to only `code`.
