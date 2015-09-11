@@ -1,4 +1,67 @@
-# CLI Reference
+# nvl
+
+The `nvl` command aims to help with deploying, managing, and maintaining Anvil Connect servers. You can get it by installing Anvil Connect globally via npm:
+
+```bash
+$ npm install -g anvil-connect-cli
+```
+
+## Terminology
+
+- **Issuer** - an Anvil Connect server
+
+## Initializing a project
+
+_[See the getting started guide](getting-started.md#initializing-your-project)_
+
+## Setting up a server for administration
+
+In order to administer an Anvil Connect server, you need
+
+- A registered, administrator ("authority") user
+- A client registration entry for the CLI tool
+
+### Fresh install
+
+The `nvl setup` command takes care of registering an administrator account and registering the CLI client with an Anvil Connect that has no administrator user set up yet.
+
+```
+$ nvl setup https://connect.example.com --token-file path/to/connect/keys/setup.token
+? Choose an email admin@example.com
+? Choose a password ********
+? Choose a name for this configuration connect.example.com
+? Choose an ID for this configuration connect-example-com
+Your setup is complete. You may now log in with `$ nvl login`.
+```
+
+### Existing install
+
+If you already have a CLI registered with an Anvil Connect server, you can add the existing registration using `nvl issuer:add`.
+
+```
+$ nvl issuer:add
+? Enter the issuer URI https://connect.example.com
+? Enter the client ID 0a1b2c3d4e5f6-7a0b-1c2d-3e4f5a6b7c8d
+? Enter the client secret 0a1b2c3d4e5f6a0b1c2d
+? Enter the redirect URI https://connect.example.com
+? Choose a name for this configuration My OIDC Provider
+? Choose an ID for this configuration example-oidc-provider
+Added issuer. You may now log in with `$ nvl login`.
+```
+
+You can replace any of the prompts with their command-line argument equivalents:
+
+```
+ nvl issuer:add [<issuer uri>] [--client-id | -c <id>]
+        [--client-secret | -s <secret>] [--redirect-uri | -r <uri>]
+        [--name | -n <config name>] [--id | -i <config id>]
+```
+
+# Old CLI reference
+
+**NOTE:** The `nv` command is being phased out in favour of `nvl`. This reference will remain during the transitional phase for functionality not yet supported by `nvl`.
+
+----
 
 The `nv` command aims to provide control over every aspect of your server. It should be run from the root of your project directory. You can get it by installing Anvil Connect globally via npm:
 
