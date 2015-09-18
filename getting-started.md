@@ -170,6 +170,24 @@ containers.
 
 First, you'll want to ensure a few things are in order.
 
+#### Windows and OS/X Users
+On Windows and OSX, [Docker Toolbox](https://www.docker.com/toolbox),
+[Docker Machine with VirtualBox](https://www.docker.com/docker-machine),
+and [Boot2Docker](http://boot2docker.io/) all configure a VirtualBox VM to
+run the Docker host.
+
+If you're running one of these, then your project folder **must** exist within
+the directory tree underneath ```/Users/``` (for OS/X) or ```c:\Users\```
+(for Windows).  This is because boot2docker is used by all of these tools,
+and by default it only maps the Users directory tree into the Docker VM.
+
+If the project folder exists within your home directory or your ```Documents```
+folder, then in most cases it will work fine.
+
+If you must locate the project folder elsewhere, see this
+[StackOverlow post](http://stackoverflow.com/questions/30586949/how-do-i-map-volume-outside-c-users-to-container-on-windows)
+for a possible solution.
+
 #### IP Address
 
 If you're running on Linux, Anvil Connect will be bound to localhost and/or the
