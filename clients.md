@@ -4,8 +4,6 @@
 After setting up your Anvil Connect server, the next step is to register apps and services, called clients, to obtain credentials and configure relevant [properties](#client-properties), depending on the type of client. Once you've done this, you can add a library dependency to your client code and configure it to use your auth server and credentials.
 
 
-## Client Types
-
 ### Trusted Clients
 
 As an identity provider, Anvil Connect can optionally authenticate users of third party apps against your auth server. When users come from another developer's app, the server prompts users to authorize access to their account. This is important when sharing data outside of your own realm, but unnecessary for your own apps. To streamline the user experience, you can register "trusted" apps.
@@ -13,8 +11,51 @@ As an identity provider, Anvil Connect can optionally authenticate users of thir
 
 ### Application Type
 
-Anvil Connect supports three kinds of clients: `web`, `native`, and `service`. The type of client is determined by the [application_type](#application-type) property, which defaults to `web`. `web` clients can be server side apps like you might build with Rails or HTML5 apps that run entirely in the browser. `native` clients include iOS, Android, desktop, and CLI apps. `service` type clients include RESTful and realtime APIs. Users typically don't interact directly with services. Use this type if your client will acquire client-only credentials without user intervention.
+The application type, or type of client, is determined by the `application_type` property, which defaults to `web`. Anvil Connect supports the `application_type` values [defined in the OpenID Connect standard][oidc-client-reg-metadata]:
 
+ - **`web`** - server-side apps like you might build with Rails or HTML5 apps that run entirely in the browser
+ - **`native`** - iOS, Android, desktop, and CLI apps
+
+In addition, Anvil Connect supports the **`service`** application type for use with RESTful and realtime APIs. Users typically don't interact directly with services; use this type if your client will acquire client-only credentials without user intervention.
+
+[oidc-client-reg-metadata]: https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata
+
+
+### Grant Types
+
+Grant types determine what kind of _authorization grants_ the client is allowed to request. Anvil Connect supports three grant types derived from the OpenID Connect specification:
+
+ - **`authorization_code`** - for server-side apps that can obtain tokens from the auth server behind the scenes
+ - **`implicit`** - for apps that run on the client and need to get tokens directly from the auth server
+ - **`refresh_token`** - for apps that need to "refresh" tokens when the user needs to stay signed in for prolonged periods
+
+If left unspecified, the allowed grant types for a client default to only `authorization_code`.
+
+### Response Types
+
+Response types are related to grant types, but instead determine the exact types of tokens/data the client expects to handle. The supported response types are:
+
+ - **`code`** - an authorization code used to obtain tokens
+ - **`token`** - an access token, used to access resources such as the `userinfo` endpoint
+ - **`id_token`** - an ID token, which identifies the signed-in user
+ - **`none`** - nothing - the client just wants to check if authentication worked without touching any further data; cannot be used with other response types
+
+If left unspecified, the allowed response types for a client default to only `code`.
+
+Response types can be combined into sets to indicate that a client intends to use certain combinations together. For example, `code token` indicates that the client would like to obtain an authorization code together with an access token.
+
+Each combination of response types must be explicitly defined for those response types to be used together in a request. Each possible permutation of that combination does not need to specified, however.
+
+For example, assuming that a client needs to obtain an access token, an ID token, and an authorization code, the client will need to have `code id_token token` in its registered list of response types. `code token id_token`, `token code id_token`, etc. would all have the same effect.
+
+Response types require that their related grant types are set on the client:
+
+Response type | Required grant type
+------------- | -------------------
+`code` | `authorization_code`
+`token` | `implicit`
+`id_token` | `implicit`
+`none` | N/A
 
 ## Registration
 
@@ -34,6 +75,8 @@ The quickest way to register a client is with the `nv` CLI tool. Run it from the
 $ nv add client '{
   "client_name": "Example App",
   "default_max_age": 36000,
+  "response_types": ["code"],
+  "grant_types": ["authorization_code"],
   "redirect_uris": ["http://localhost:9000/callback.html"],
   "post_logout_redirect_uris": ["http://localhost:9000"],
   "trusted": "true"
@@ -96,6 +139,76 @@ content-type: application/json
 
 ### REST API
 
+### Registration permissions
+
+Anvil Connect can be configured for three types of client registration: `dynamic`, `token`, or `scoped`, each being more restrictive than the previous option. The default `client_registration` type is `scoped`. Trusted clients require additional scope to register. This can be configured with the `trusted_registration_scope` setting, which defaults to `realm`.
+
+#### Dynamic Client Registration
+
+With `client_registration` set to `dynamic`, any party can register a client with the authorization server. Optionally, a bearer token may be provided in the authorization header per RFC6750. If a valid access token is presented with a registration request, the client will be associated with the user represented by that token.
+
+```json
+{
+  // ...
+  "client_registration": "dynamic",
+  // ...
+}
+```
+
+The following table indicates expected responses to *Dynamic Client Registration* requests.
+
+| trusted | w/token | w/scope | response  |
+|:-------:|:-------:|:-------:|----------:|
+|         |         |         | 201       |
+| x       |         |         | 403       |
+|         | x       |         | 201       |
+| x       | x       |         | 403       |
+| x       | x       | x       | 201       |
+|         | x       | x       | 201       |
+
+
+#### Token-restricted Registration
+
+Client registration can be restricted so that a valid user access token is required by setting `client_registration` to `token`. In this case, any request without a token will fail. As with *Dynamic Client Registration*, in order to register a trusted client, the access token must have sufficient scope.
+
+```json
+{
+  // ...
+  "client_registration": "token",
+  // ...
+}
+```
+
+| trusted | w/token | w/scope | response  |
+|:-------:|:-------:|:-------:|----------:|
+|         |         |         | 403       |
+| x       |         |         | 403       |
+|         | x       |         | 201       |
+| x       | x       |         | 403       |
+| x       | x       | x       | 201       |
+|         | x       | x       | 201       |
+
+#### Scoped Registration
+
+Third party registration can be restricted altogether with the `scoped` `client_registration` setting. In this case, all registration requires a prescribed `registration_scope`.
+
+```json
+{
+  // ...
+  "client_registration": "scoped",
+  // ...
+}
+```
+
+| trusted | w/token | w/scope | response  |
+|:-------:|:-------:|:-------:|----------:|
+|         |         |         | 403       |
+| x       |         |         | 403       |
+|         | x       |         | 403       |
+| x       | x       |         | 403       |
+| x       | x       | x       | 201       |
+|         | x       | x       | 201       |
+
 ## Client Properties
 
 #### redirect_uris
@@ -141,6 +254,22 @@ URI of the application or information about the application.
 
 ```
 "client_uri": "http://app.example.com"
+```
+
+#### response_types
+
+Array of allowed response types. Valid values are `code`, `token`, `id_token`, and combinations of the three. `none` is also a valid option, but cannot be in a set with other response types, i.e. `[ "none", "code" ]` is valid but `[ "none code" ]` is not. Defaults to `[ "code" ]`. _[See response types for more details.](#response-types)_
+
+```
+"response_types": [ "code" ]
+```
+
+#### grant_types
+
+Array of allowed grant types. Valid values are `authorization_code`, `implicit`, and `refresh_token`. Defaults to `[ "authorization_code" ]`. _[See grant types for more details.](#grant-types)_
+
+```
+"grant_types": [ "authorization_code" ]
 ```
 
 #### default_max_age
