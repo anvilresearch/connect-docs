@@ -10,6 +10,9 @@ The problem of auth is like an iceberg. On the surface users only see the button
  
 When you get beneath the surface, though, the problem is much bigger than it seems. Auth becomes challenging when you have more than one app and you want to share user accounts and permissions. It gets more complex when you want to offer users a choice of several authentication methods. These challenges multiply further when you start publishing and consuming API data. Anvil Connect solves these problems by providing a single point of truth for identity and access management.
 
+#### Support us on [Bountysource](https://salt.bountysource.com/teams/anvilresearch)! 
+We are 100% opensource, we appreciate the help!
+
 ## How it works
 <!-- Is this Connect or Connect's server that acts as a database? -->
 Anvil Connect acts as a database of users, apps, services, permissions and connections to other providers. When you run the server, you also become a provider of OAuth 2.0 and OpenID Connect. Connect allows you to share user accounts between applications and protect your APIs with JSON Web Tokens. It also means third party developers can, if you choose to allow it, build apps that authenticate against your instance of Connect.
