@@ -57,6 +57,78 @@ You can replace any of the prompts with their command-line argument equivalents:
         [--name | -n <config name>] [--id | -i <config id>]
 ```
 
+
+## CLI User Authentication
+
+### login
+
+Running the login command will first prompt you to select an issuer.
+
+```bash
+nvl login
+? Select an Anvil Connect instance (Use arrow keys)
+❯ connect.anvil.io (connect-anvil-io)
+  laptop-connect.anvil.io (laptop-connect-anvil-io) 
+```
+
+After you select an issuer, you'll be prompted for your email and password to login.
+
+```bash
+? Select an Anvil Connect instance connect.anvil.io (connect-anvil-io)
+Selected issuer connect.anvil.io (https://connect.anvil.io)
+? Enter your email smith@anvil.io
+? Enter your password **********
+You have been successfully logged in to connect.anvil.io  
+```
+
+Once you've logged into an issuer, you can run other commands that require authentication.
+
+
+
+## Client Registration
+
+### client:register
+
+```bash
+nvl client:register [--issuer | -i <issuer id>] [--trusted | -t]
+         [--name | -n <name>] [--uri | -u <uri>]
+         [--logo-uri | -l <logo uri>] [--application-type | -a <app type>]
+         [--response-type | -r <response type>] [--grant-type | -g <grant type>]
+         [--default-max-age | -d <seconds>] [--redirect-uri | -s <redirect uri>]
+         [--post-logout-redirect-uri | -p <post logout redirect uri>]
+```
+
+### client:list
+
+```bash
+nvl client:list [--issuer | -i <issuer id>]
+```
+
+### client:info
+
+```bash
+nvl client:info [<id>] [--issuer | -i <issuer id>]
+```
+
+### client:update
+
+```bash
+nvl client:update [<id>] [--issuer | -i <issuer id>] [--trusted | -t]
+         [--name | -n <name>] [--uri | -u <uri>]
+         [--logo-uri | -l <logo uri>] [--application-type | -a <app type>]
+         [--response-type | -r <response type>] [--grant-type | -g <grant type>]
+         [--default-max-age | -d <seconds>] [--redirect-uri | -s <redirect uri>]
+         [--post-logout-redirect-uri | -p <post logout redirect uri>]
+```
+
+### client:delete
+
+```bash
+nvl client:delete [<id>] [--issuer | -i <issuer id>]
+```
+
+
+
 # Old CLI reference
 
 **NOTE:** The `nv` command is being phased out in favour of `nvl`. This reference will remain during the transitional phase for functionality not yet supported by `nvl`.
