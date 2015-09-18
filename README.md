@@ -6,6 +6,7 @@ This is the official documentation for [Anvil Connect](https://github.com/anvilr
 
 ## Support
 
+
 ### Chat with us
 
 Come say hello on Gitter or Slack! We love talking shop with Anvil Connect users :)
@@ -13,9 +14,10 @@ Come say hello on Gitter or Slack! We love talking shop with Anvil Connect users
 [![Gitter](https://badges.gitter.im/anvilresearch/connect.svg)](https://gitter.im/anvilresearch/connect) [![Slack](http://slackin.anvil.io/badge.svg)](http://slackin.anvil.io/)
 [![IRC](https://img.shields.io/badge/Slack-IRC-green.svg)](https://anvilresearch.slack.com/account/gateways)
 
+
 ### Stack Overflow
 
-Ask general usage questions on [Stack Overflow](http://stackoverflow.com/questions/tagged/anvil-connect) using the tag "anvil-connect".
+#### Ask general usage questions on [Stack Overflow](http://stackoverflow.com/questions/tagged/anvil-connect) using the tag "anvil-connect".
 
 ### GitHub Issues
 
@@ -28,3 +30,5 @@ Every Thursday at 9AM PDT / 12PM EDT / 4PM GMT we get together to map out the fu
 ## Contributing
 
 To contribute to the docs, you can [fork this repository](https://github.com/anvilresearch/connect-docs/fork) and submit a pull request with your proposed edits. Thanks in advance!
+
+#### You can support us on [Bountysource](https://salt.bountysource.com/teams/anvilresearch)
