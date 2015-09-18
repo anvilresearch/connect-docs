@@ -113,7 +113,7 @@ nvl client:info [<id>] [--issuer | -i <issuer id>]
 ### client:update
 
 ```bash
-nvl client:update [<id>] [--issuer | -i <issuer id>] [--trusted | -t]
+nvl client:update [<id>] [--issuer | -i <issuer id>] [--trusted | -t] [--untrusted]
          [--name | -n <name>] [--uri | -u <uri>]
          [--logo-uri | -l <logo uri>] [--application-type | -a <app type>]
          [--response-type | -r <response type>] [--grant-type | -g <grant type>]
