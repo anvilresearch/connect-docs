@@ -62,7 +62,7 @@ Response type | Required grant type
 Registering a client creates a set of credentials that are required for interacting with Anvil Connect. You can set [properties](#client-properties) on a client that contain helpful information and also determine the way that client works depending on the context.
 
 
-Although not strictly required, we recommend setting (at a minimum) `client_name` and `client_uri` for all clients. Web and native applications require one or more redirect_uris to be configured and should also define at least one `post_logout_redirect_uri` as well. When registering your own apps as clients, we recommended setting `trusted` to "true".
+Although not strictly required, we recommend setting (at a minimum) `client_name` and `client_uri` for all clients. Web and native applications require one or more redirect_uris to be configured and should also define at least one `post_logout_redirect_uri` as well. When registering your own apps as clients, we recommended setting `trusted` to `true`.
 
 There are three ways to register clients with Anvil Connect. You can use the Anvil Connect CLI, the Dynamic Registration endpoint, or the REST API.
 
@@ -79,7 +79,7 @@ $ nv add client '{
   "grant_types": ["authorization_code"],
   "redirect_uris": ["http://localhost:9000/callback.html"],
   "post_logout_redirect_uris": ["http://localhost:9000"],
-  "trusted": "true"
+  "trusted": true
 }'
 ```
 
@@ -295,7 +295,7 @@ Array of URIs that can be used by the server for redirecting users back to the c
 The string `true` indicates a client is part of your security realm. Any other value (including no value) indicates the client should be treated as a third party.
 
 ```
-"trusted": "true"
+"trusted": true
 ```
 
 #### default_client_scope
