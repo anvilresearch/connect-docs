@@ -68,8 +68,75 @@ There are three ways to register clients with Anvil Connect. You can use the Anv
 
 ### CLI command
 
-The quickest way to register a client is with the `nv` CLI tool. Run it from the root of your project.
+The quickest way to register a client is with the `nvl` CLI tool. You will need to [have `nvl` configured for your server](cli.md#setting-up-a-server-for-administration).
 
+First, log in to the server.
+
+<pre>
+$ nvl login
+
+? <b>Select an Anvil Connect instance</b> (Use arrow keys)
+❯ connect.example.com (connect-example.com)
+  localhost:3000 (localhost-3000)
+Selected issuer connect.example.com (https://connect.example.com)
+? <b>Enter your email</b> admin@example.com
+? <b>Enter your password</b> **********
+You have been successfully logged in to connect.example.com
+</pre>
+
+Then, run the `client:register` command. Run without arguments, it will prompt for the client details. The supported arguments are [available in the CLI reference](cli.md#clientregister).
+
+<pre>
+$ nvl client:register
+
+? <b>Select an Anvil Connect instance</b> (Use arrow keys)
+❯ connect.example.com (connect-example.com)
+  localhost:3000 (localhost-3000)
+Selected issuer connect.example.com (https://connect.example.com)
+? <b>Will this be a trusted client?</b> (y/N) N
+? <b>Enter a name</b> Test App
+? <b>Enter a URI</b> https://app.example.com
+? <b>Enter a logo URI</b> https://app.example.com/logo.svg
+? <b>Choose an application type</b> (Use arrow keys)
+❯ web 
+  native 
+  service
+? <b>Select response types</b> (Press &lt;space&gt; to select)
+❯◯ code
+ ◯ id_token token
+ ◯ code id_token token
+ ◯ token
+ ◯ none
+? <b>Select grant types</b> (Press &lt;space&gt; to select)
+❯◯ authorization_code 
+ ◯ implicit
+ ◯ refresh_token
+ ◯ client_credentials
+? <b>Set the default max age</b> (in seconds) (3600)
+? <b>Define redirect URIs</b> https://app.example.com/callback
+? <b>Define redirect URIs</b> https://app.example.com/rp
+? <b>Define redirect URIs</b>
+? <b>Define post logout redirect URIs</b> https://app.example.com/
+? <b>Define post logout redirect URIs</b>
+
+Name					<b>Test App</b>
+Client ID				95c9d5ae-63a9-4278-919b-b551c6a3f6ba
+Client Secret			8eb670c2d09ba6978d97
+Client URI				https://app.example.com
+Application type		web
+Response types			code
+Grant types				authorization_code
+Token auth method		client_secret_basic
+Default max age			3600
+Redirect URIs			https://app.example.com/callback
+						https://app.example.com/rp
+Logout Redirect URIs	https://app.example.com/
+Trusted					false
+Created					Fri Sep 25 2015 10:11:41 GMT-0700 (PDT)
+Modified				Fri Sep 25 2015 10:11:41 GMT-0700 (PDT)
+</pre>
+
+If you are not yet running or unable to run `nvl`, you may use `nv`. Run it from the root of your project. **Note that this method of registering clients is deprecated and will be removed in a future release.**
 
 ```bash
 $ nv add client '{
