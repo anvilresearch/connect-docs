@@ -2,7 +2,7 @@
 
 ### Requirements
 
-Anvil Connect works with the latest versions of [Node.js][nodejs] (0.12.x) or
+Anvil Connect works with the latest versions of [Node.js][nodejs] (0.12.x to 4.0.0 and higher) or
 [io.js][iojs] (3.x.x) and [Redis][redis] (3.0.x) and is tested on
 [Debian][debian], [Ubuntu][ubuntu], [Alpine][alpine] Linux distributions, and
 Mac OS X.
