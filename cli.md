@@ -127,7 +127,126 @@ nvl client:update [<id>] [--issuer | -i <issuer id>] [--trusted | -t] [--untrust
 nvl client:delete [<id>] [--issuer | -i <issuer id>]
 ```
 
+## User Registration
 
+
+
+
+
+### user:register
+
+```bash
+nvl user:register [--issuer | -i <issuer id>]
+        [--name | -n <name>] [--given | -g <given name>]
+        [--middle | -m <middle name>] [--family | -f <family name>]
+        [--nickname | -k <nickname>] [--username | -u <preferred username>]
+        [--profile | -p <profile url>] [--picture | -i <picture url>]
+        [--website | -w <website url>] [--email | -e <email>]
+```
+
+### user:list
+
+```bash
+nvl user:list [--issuer | -i <issuer id>]
+```
+
+### user:info
+
+```bash
+nvl user:info [<id>] [--issuer | -i <issuer id>]
+```
+
+### user:update
+
+```bash
+nvl user:update [<id>] [--issuer | -i <issuer id>]
+        [--name | -n <name>] [--given | -g <given name>]
+        [--middle | -m <middle name>] [--family | -f <family name>]
+        [--nickname | -k <nickname>] [--username | -u <preferred username>]
+        [--profile | -p <profile url>] [--picture | -i <picture url>]
+        [--website | -w <website url>] [--email | -e <email>]
+```
+
+### user:delete
+
+```bash
+nvl user:delete [<id>] [--issuer | -i <issuer id>]
+```
+
+### user:roles
+### user:assign
+### user:revoke
+
+## Roles
+
+### role:register
+
+```bash
+nvl role:register [<id>] [--issuer | -i <issuer id>] [--name | -n <name>]
+```
+
+### role:list
+
+```bash
+nvl role:list [--issuer | -i <issuer id>]
+```
+
+### role:info
+
+```bash
+nvl role:info [<id>] [--issuer | -i <issuer id>]
+```
+
+### role:update
+
+```bash
+nvl role:update [<id>] [--issuer | -i <issuer id>] [--name | -n <name>]
+```
+
+### role:delete
+
+```bash
+nvl role:delete [<id>] [--issuer | -i <issuer id>]
+```
+
+### role:scopes
+### role:permit
+### role:forbid
+
+
+## Scopes
+
+### scope:register
+
+```bash
+nvl scope:register [<id>] [--issuer | -i <issuer id>] [--name | -n <name>]
+        [--description | -d <description>] [--restricted | -r]
+```
+
+### scope:list
+
+```bash
+nvl scope:list [--issuer | -i <issuer id>]
+```
+
+### scope:info
+
+```bash
+nvl scope:info [<id>] [--issuer | -i <issuer id>]
+```
+
+### scope:update
+
+```bash
+nvl scope:update [<id>] [--issuer | -i <issuer id>] [--name | -n <name>]
+        [--description | -d <description>] [--restricted | -r]
+```
+
+### scope:delete
+
+```bash
+nvl scope:delete [<id>] [--issuer | -i <issuer id>]
+```
 
 # Old CLI reference
 
