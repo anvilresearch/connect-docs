@@ -180,6 +180,12 @@ nvl user:delete [<id>] [--issuer | -i <issuer id>]
 ### user:assign
 ### user:revoke
 
+### user:token
+
+```bash
+nvl user:token [--issuer | -i <issuer id>]
+```
+
 ## Roles
 
 ### role:register
