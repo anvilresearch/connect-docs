@@ -127,6 +127,13 @@ nvl client:update [<id>] [--issuer | -i <issuer id>] [--trusted | -t] [--untrust
 nvl client:delete [<id>] [--issuer | -i <issuer id>]
 ```
 
+### client:token
+
+```bash
+nvl client:token [--issuer | -i <issuer id>]
+```
+
+
 ## User Registration
 
 ### user:register
