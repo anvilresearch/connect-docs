@@ -257,3 +257,8 @@ nvl scope:update [<id>] [--issuer | -i <issuer id>] [--name | -n <name>]
 nvl scope:delete [<id>] [--issuer | -i <issuer id>]
 ```
 
+## Version
+
+```bash
+nvl version
+```
