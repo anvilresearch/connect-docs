@@ -378,7 +378,9 @@ Array of strings used to specify scope requested for client access tokens issued
 
 #### scopes
 
-Array of strings. The `scopes` setting determines which scopes are required to access an app.
+Array of strings. The `scopes` setting is a list of user-authorized scopes required to 
+display this client at the applications endpoint. In the future, this value may be used 
+to restrict users from signing into clients they have no permissions for.
 
 ```
 "scopes": [
