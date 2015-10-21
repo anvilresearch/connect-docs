@@ -177,6 +177,11 @@ nvl user:delete [<id>] [--issuer | -i <issuer id>]
 ```
 
 ### user:roles
+
+```bash
+nvl user:roles [<id>] [--issuer | -i <issuer id>]
+```
+
 ### user:assign
 ### user:revoke
 
