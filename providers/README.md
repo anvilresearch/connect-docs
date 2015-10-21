@@ -150,4 +150,5 @@ this folder.
 - [OAuth 2.0](OAuth2.md)
 - [OAuth](OAuth.md)
 - [LDAP and Active Directory](LDAP.md)
+- [SAML 2.0](SAML2.md)
 
