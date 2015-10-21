@@ -233,9 +233,22 @@ nvl role:delete [<id>] [--issuer | -i <issuer id>]
 ```
 
 ### role:scopes
+
+```bash
+nvl role:scopes [<role name>] [--issuer | -i <issuer id>]
+```
+
 ### role:permit
+
+```bash
+nvl role:permit [<role name> <scope name>] [--issuer | -i <issuer id>]
+```
+
 ### role:forbid
 
+```bash
+nvl role:forbid [<role name> <scope name>] [--issuer | -i <issuer id>]
+```
 
 ## Scopes
 
