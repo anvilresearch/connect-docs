@@ -183,7 +183,16 @@ nvl user:roles [<id>] [--issuer | -i <issuer id>]
 ```
 
 ### user:assign
+
+```bash
+nvl user:assign [<user id> <role name>] [--issuer | -i <issuer id>]
+```
+
 ### user:revoke
+
+```bash
+nvl user:revoke [<user id> <role name>] [--issuer | -i <issuer id>]
+```
 
 ### user:token
 
