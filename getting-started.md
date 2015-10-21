@@ -5,9 +5,8 @@
 Anvil Connect works with the latest versions of [Node.js][nodejs] (0.12.x to 4.0.0 and higher) or
 [io.js][iojs] (3.x.x) and [Redis][redis] (3.0.x) and is tested on
 [Debian][debian], [Ubuntu][ubuntu], [Alpine][alpine] Linux distributions, and
-Mac OS X. Windows support is a work in progress and your mileage may vary.
-
-Before installing Anvil Connect or related packages, be sure you have [git][git] and 
+Mac OS X. Windows support is a work in progress and your mileage may vary. Before 
+installing Anvil Connect or related packages, be sure you have [git][git] and 
 [openssl][openssl] installed on your system. 
 
 The server and its dependencies can optionally run inside [Docker][docker]
