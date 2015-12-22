@@ -127,6 +127,24 @@ nvl client:update [<id>] [--issuer | -i <issuer id>] [--trusted | -t] [--untrust
 nvl client:delete [<id>] [--issuer | -i <issuer id>]
 ```
 
+### client:roles
+
+```bash
+nvl client:roles [<id>] [--issuer | -i <issuer id>]
+```
+
+### client:assign
+
+```bash
+nvl client:assign [<client id> <role name>] [--issuer | -i <issuer id>]
+```
+
+### client:revoke
+
+```bash
+nvl client:revoke [<client id> <role name>] [--issuer | -i <issuer id>]
+```
+
 ### client:token
 
 ```bash
