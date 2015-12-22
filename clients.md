@@ -404,8 +404,7 @@ Clients can be assigned roles which grant the client permission to access scopes
 You can assign a role to a client using the CLI.
 
 ```bash
-# -c indicates the assignment should be made to a client
-$ nv assign -c <CLIENT_ID> <ROLE>
+$ nvl client:assign <CLIENT_ID> <ROLE>
 ```
 
 ## Client Libraries
