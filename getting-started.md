@@ -255,29 +255,4 @@ $ docker-compose logs <connect|nginx|redis>
 ```
 
 
-### Building Custom Containers
-
-By default, Docker Compose is configured to use images provided by Anvil
-Research on Docker Hub. You can build images yourself by commenting out the
-`image` property of a service in `docker-compose.yml` and uncommenting the
-`build` property like so:
-
-```yaml
-connect:
-  build: connect
-  #image: anvilresearch/connect
-  ...
-```
-
-While we highly recommend using the official images or provided Dockerfiles,
-if necessary you can modify them to suit your requirements. You can also push
-your own custom images to Docker Hub and use them to run Connect by referencing
-them in the `image` property in `docker-compose.yml`.
-
-```yaml
-connect:
-  #build: connect
-  image: <dockerhubusername>/connect
-```
-
 ### [Configuring the server](server/configuration.md)
