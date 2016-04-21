@@ -76,7 +76,7 @@ Connect.
 
 # FQDN of the auth server
 # This can be localhost, an IP address, or a (sub)domain
-? What (sub)domain will you use? connect.example.io
+? What (sub)domain will you use? connect.example.com
 
 # We recommend our default Docker setup, including
 # support for running Anvil Connect, Redis, and nginx
@@ -214,7 +214,7 @@ associate the (sub)domain you provided the generator with the IP address of
 your Docker host.
 
 ```bash
-192.168.99.100 connect.example.io
+192.168.99.100 connect.example.com
 ```
 
 #### SSL Certificate
