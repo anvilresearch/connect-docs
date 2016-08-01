@@ -38,13 +38,38 @@ module.exports = {
 }
 ```
 
-## Configuration Options
+Note: if you are using Docker you will also need to update your [Dockerfile](https://github.com/anvilresearch/connect-cli/blob/master/templates/connect/Dockerfile#L15) to include ```COPY ./logger.js /opt/connect/logger.js```
+
+### Configuration Options
+
+__Log Level__
 
 ```json
   level: fatal|error|warn|info|debug|trace
 ```
 
 See [Bunyan's log level options](https://github.com/trentm/node-bunyan#levels) for more information on the meaning behind these configuration options.
+
+__Log Rotation__
+
+```javascript
+const logFilePath = path.join(cwd, 'logs', env + '.log')
+
+module.exports = {
+  name: 'anvilconnect',
+  streams: [
+    {
+      level: 'info',
+      path: logFilePath,
+      type: 'rotating-file',
+      period: '1d',   // rotation frequency
+      count: 10       // number of copies to retain
+    }
+  ]
+}
+```
+
+See [Bunyan's log rotation documentation](https://github.com/trentm/node-bunyan#stream-type-rotating-file) for more information.
 
 ### Parsing Log Output
 
