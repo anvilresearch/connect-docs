@@ -39,9 +39,7 @@ $ npm install -g anvil-connect-cli
 > **Note:** Some commands in the documentation will refer to the `nv` command.
 As the `anvil-connect-cli` package is still in the process of becoming
 feature-complete, you will also need to run
-> ```bash
-$ npm install -g anvil-connect
-```
+> `npm install -g anvil-connect`
 > to obtain the `nv` command. In the future, installing `anvil-connect` globally
 will be deprecated.
 >
