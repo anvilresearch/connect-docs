@@ -35,25 +35,25 @@ globally using npm.
 ```bash
 $ npm install -g anvil-connect-cli
 ```
-
-> **Note:** Some commands in the documentation will refer to the `nv` command.
+**Note:** Some commands in the documentation will refer to the `nv` command.
 As the `anvil-connect-cli` package is still in the process of becoming
 feature-complete, you will also need to run
-> ```bash
+
+```bash
 $ npm install -g anvil-connect
 ```
-> to obtain the `nv` command. In the future, installing `anvil-connect` globally
+
+to obtain the `nv` command. In the future, installing `anvil-connect` globally
 will be deprecated.
->
-> `nv` must be run inside the directory where Anvil Connect is configured, unlike
-> `nvl`.
+
+`nv` must be run inside the directory where Anvil Connect is configured, unlike `nvl`.
 
 After this has completed successfully, you can generate all the files you'll
 need to run your own custom auth server.
 
 First, make a new directory and `cd` into it. Then, run `nvl init`.
 
-```
+```bash
 $ mkdir myauthserver
 $ cd myauthserver
 $ nvl init
